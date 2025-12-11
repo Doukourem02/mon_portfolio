@@ -357,9 +357,7 @@ export const projects = [
     galleryImages: [
       "/images/projects/chrono_livraison/chrono1.png",
       "/images/projects/chrono_livraison/chrono2.png",
-      "/images/projects/chrono_livraison/chrono5.png",
       "/images/projects/chrono_livraison/chrono6.png",
-      "/images/projects/chrono_livraison/chrono8.PNG",
     ],
     techStack: techStack.filter((item) =>
       [
