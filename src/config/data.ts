@@ -471,3 +471,14 @@ export const githubSection = {
   username: "Doukourem02",
   title: "GitHub Contributions",
 };
+
+export const socialStats = {
+  twitter: {
+    followers: 25,
+    following: 573,
+  },
+  instagram: {
+    followers: 215,
+    following: 628,
+  },
+};

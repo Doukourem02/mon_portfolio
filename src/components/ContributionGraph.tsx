@@ -10,8 +10,10 @@ import {
   FiUserCheck,
   FiHeart,
   FiEye,
+  FiTwitter,
+  FiInstagram,
 } from "react-icons/fi";
-import { githubSection } from "@/config/data";
+import { githubSection, socialStats } from "@/config/data";
 
 // 🧠 Lazy-load GitHubCalendar for performance
 const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
@@ -41,7 +43,6 @@ export default function ContributionGraph() {
   const { title } = githubSection;
 
   const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>();
-  const [stats, setStats] = useState({ followers: 0, following: 0 });
   const [views, setViews] = useState(0);
   const [love, setLove] = useState(0);
   const [hasLoved, setHasLoved] = useState(false);
@@ -69,21 +70,7 @@ export default function ContributionGraph() {
     setServerTheme(scheme);
   }, [scheme]);
 
-  // ✅ Fetch GitHub data once
-  useEffect(() => {
-    async function fetchGitHubData() {
-      try {
-        const res = await fetch(`https://api.github.com/users/${username}`, {
-          next: { revalidate: 3600 },
-        });
-        const data = await res.json();
-        setStats({ followers: data.followers, following: data.following });
-      } catch (err) {
-        console.error("GitHub API error:", err);
-      }
-    }
-    fetchGitHubData();
-  }, [username]);
+  // Les stats Twitter et Instagram sont maintenant dans la configuration
 
   // ✅ Unique view logic (one per device)
   useEffect(() => {
@@ -153,9 +140,19 @@ export default function ContributionGraph() {
     }
   };
 
-  const githubInfo = [
-    { icon: <FiUsers />, label: "Followers", value: stats.followers },
-    { icon: <FiUserCheck />, label: "Following", value: stats.following },
+  const socialInfo = [
+    { 
+      icon: <FiTwitter />, 
+      label: "Twitter Followers", 
+      value: socialStats.twitter.followers,
+      color: "text-blue-400"
+    },
+    { 
+      icon: <FiInstagram />, 
+      label: "Instagram Followers", 
+      value: socialStats.instagram.followers,
+      color: "text-pink-400"
+    },
     { icon: <FiHeart />, label: "Love Count", value: love, isLove: true },
     { icon: <FiEye />, label: "Views", value: views },
   ];
@@ -213,7 +210,7 @@ export default function ContributionGraph() {
           mx-auto mt-6
         "
       >
-        {githubInfo.map((item, i) => (
+        {socialInfo.map((item, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 10 }}
@@ -232,7 +229,7 @@ export default function ContributionGraph() {
               className={`mb-1 ${
                 item.isLove
                   ? "text-pink-400 group-hover:text-pink-300"
-                  : "text-blue-400"
+                  : item.color || "text-blue-400"
               }`}
             >
               {item.icon}
