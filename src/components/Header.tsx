@@ -32,7 +32,7 @@ export function Header() {
         <div className="text-white flex gap-2 items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.webp"
+              src="/logo.ico"
               alt={`${personalInfo.name} logo`}
               className="rounded-full h-12 w-12"
               width={72}
