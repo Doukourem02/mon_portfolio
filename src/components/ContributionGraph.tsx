@@ -10,8 +10,6 @@ import {
   FiUserCheck,
   FiHeart,
   FiEye,
-  FiTwitter,
-  FiInstagram,
 } from "react-icons/fi";
 import { githubSection, socialStats } from "@/config/data";
 
@@ -140,19 +138,12 @@ export default function ContributionGraph() {
     }
   };
 
+  const totalFollowers = socialStats.twitter.followers + socialStats.instagram.followers;
+  const totalFollowing = socialStats.twitter.following + socialStats.instagram.following;
+
   const socialInfo = [
-    { 
-      icon: <FiTwitter />, 
-      label: "Twitter Followers", 
-      value: socialStats.twitter.followers,
-      color: "text-blue-400"
-    },
-    { 
-      icon: <FiInstagram />, 
-      label: "Instagram Followers", 
-      value: socialStats.instagram.followers,
-      color: "text-pink-400"
-    },
+    { icon: <FiUsers />, label: "Followers", value: totalFollowers },
+    { icon: <FiUserCheck />, label: "Following", value: totalFollowing },
     { icon: <FiHeart />, label: "Love Count", value: love, isLove: true },
     { icon: <FiEye />, label: "Views", value: views },
   ];
@@ -229,7 +220,7 @@ export default function ContributionGraph() {
               className={`mb-1 ${
                 item.isLove
                   ? "text-pink-400 group-hover:text-pink-300"
-                  : item.color || "text-blue-400"
+                  : "text-blue-400"
               }`}
             >
               {item.icon}
