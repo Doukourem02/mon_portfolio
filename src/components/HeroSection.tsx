@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { heroSection } from "@/config/data";
 import { motion } from "framer-motion";
-import { FiCalendar, FiMapPin } from "react-icons/fi";
+import Image from "next/image";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { heroSection } from "@/config/data";
+import { FiCalendar, FiMapPin } from "react-icons/fi";
 
 function getSocialIcon(title: string) {
   switch (title) {
@@ -109,7 +109,7 @@ export function HeroSection() {
                 href={`mailto:${email}`}
               >
                 <FiCalendar className="w-4 h-4 mr-2" />
-                <span>Me contacter</span>
+                <span>Ecrivez-moi</span>
               </a>
             </motion.div>
           </div>
