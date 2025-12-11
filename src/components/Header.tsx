@@ -29,16 +29,21 @@ export function Header() {
       className="sticky top-0 z-20  px-6 py-3 bg-black/50 backdrop-blur-sm font-mono"
     >
       <nav className="w-full flex items-center justify-between">
-        <div className="text-white">
-          <Link href="/" className="flex gap-2 items-center">
+        <div className="text-white flex gap-2 items-center">
+          <Link href="/" className="flex items-center">
             <Image
               src="/logo.webp"
               alt={`${personalInfo.name} logo`}
-              className="rounded-full h-8 w-8"
-              width={50}
-              height={50}
+              className="rounded-full h-12 w-12"
+              width={72}
+              height={72}
             />
-            <span className="text-lg">{personalInfo.name}</span>
+          </Link>
+          <Link
+            href="/cv"
+            className="text-lg hover:text-blue-400 transition-colors"
+          >
+            Curriculum.Vitae
           </Link>
         </div>
         <div className=" text-gray-400">{time}</div>
