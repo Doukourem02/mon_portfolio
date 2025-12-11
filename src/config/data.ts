@@ -357,15 +357,9 @@ export const projects = [
     galleryImages: [
       "/images/projects/chrono_livraison/chrono1.png",
       "/images/projects/chrono_livraison/chrono2.png",
-      "/images/projects/chrono_livraison/chrono3.png",
-      "/images/projects/chrono_livraison/chrono4.png",
       "/images/projects/chrono_livraison/chrono5.png",
       "/images/projects/chrono_livraison/chrono6.png",
-      "/images/projects/chrono_livraison/chrono7.png",
       "/images/projects/chrono_livraison/chrono8.PNG",
-      "/images/projects/chrono_livraison/chrono9.png",
-      "/images/projects/chrono_livraison/chrono10.png",
-      "/images/projects/chrono_livraison/chrono11.png",
     ],
     techStack: techStack.filter((item) =>
       [
