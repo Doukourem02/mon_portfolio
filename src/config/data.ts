@@ -1,5 +1,6 @@
 import {
   FaCss3Alt,
+  FaCube,
   FaDocker,
   FaFigma,
   FaGitAlt,
@@ -7,13 +8,12 @@ import {
   FaNodeJs,
   FaPython,
   FaReact,
-  FaCube,
 } from "react-icons/fa";
 import {
   SiAdobephotoshop,
   SiCloudflare,
-  SiExpress,
   SiExpo,
+  SiExpress,
   SiFirebase,
   SiFramer,
   SiGraphql,
@@ -71,7 +71,7 @@ export const personalInfo = {
   title: "Full Stack Developer — Web & Mobile | UI/UX Designer",
   avatar: "/images/about/Doukoures.webp",
   email: "", // À remplir avec votre email
-  location: "Deux Plateaux 7ème Tranche, Abidjan, Côte d'Ivoire",
+  location: "Abidjan, Côte d'Ivoire",
   description:
     "Développeur Full Stack passionné par la création d'expériences numériques exceptionnelles. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies modernes, je combine expertise technique et sens du design pour concevoir des applications performantes, intuitives et esthétiques. Toujours à l'affût des dernières tendances en développement et en design UI/UX.",
 };
