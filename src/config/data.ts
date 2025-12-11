@@ -71,7 +71,7 @@ export const personalInfo = {
   title: "Full Stack Developer — Web & Mobile | UI/UX Designer",
   avatar: "/images/about/Doukoures.webp",
   email: "", // À remplir avec votre email
-  location: "Abidjan, Côte d'Ivoire",
+  location: "Deux Plateaux 7ème Tranche, Abidjan, Côte d'Ivoire",
   description:
     "Développeur Full Stack passionné par la création d'expériences numériques exceptionnelles. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies modernes, je combine expertise technique et sens du design pour concevoir des applications performantes, intuitives et esthétiques. Toujours à l'affût des dernières tendances en développement et en design UI/UX.",
 };
@@ -420,7 +420,7 @@ export const projects = [
       "A sleek and modern Nike website redesign showcasing fully responsive design with smooth animations and clean UI inspired by Nike's iconic branding. Built with mobile-first approach and deployed on Vercel for lightning-fast performance.",
     image: "/images/projects/nike-reimagined.webp",
     liveUrl: "https://nike-reimagined-mu.vercel.app/",
-    githubUrl: "https://github.com/adityadomle/nike-reimagined",
+    githubUrl: "https://github.com/Doukourem02",
     techStack: techStack.filter((item) =>
       ["React", "Tailwind"].includes(item.name)
     ),
@@ -431,7 +431,7 @@ export const projects = [
       "Real-time news application integrating News API to deliver headlines across various categories. Features a modern interface with TypeScript for type safety and shadcn-ui components for a polished user experience.",
     image: "/images/projects/news-hub.webp",
     liveUrl: "https://news-hub-seven-chi.vercel.app/",
-    githubUrl: "https://github.com/adityadomle/news-hub",
+    githubUrl: "https://github.com/Doukourem02",
     techStack: techStack.filter((item) =>
       ["React", "TypeScript", "Tailwind"].includes(item.name)
     ),
@@ -468,6 +468,6 @@ export const certifications: Array<{
 ];
 
 export const githubSection = {
-  username: "adityadomle",
+  username: "Doukourem02",
   title: "GitHub Contributions",
 };
