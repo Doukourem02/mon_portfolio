@@ -17,7 +17,7 @@ import { githubSection, socialStats } from "@/config/data";
 const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
   ssr: false,
   loading: () => (
-    <div className="text-center text-gray-400 py-10">Loading graph...</div>
+    <div className="text-center text-gray-400 py-10">Chargement du graphique...</div>
   ),
 });
 
@@ -142,10 +142,10 @@ export default function ContributionGraph() {
   const totalFollowing = socialStats.twitter.following + socialStats.instagram.following;
 
   const socialInfo = [
-    { icon: <FiUsers />, label: "Followers", value: totalFollowers },
-    { icon: <FiUserCheck />, label: "Following", value: totalFollowing },
-    { icon: <FiHeart />, label: "Love Count", value: love, isLove: true },
-    { icon: <FiEye />, label: "Views", value: views },
+    { icon: <FiUsers />, label: "Abonnés", value: totalFollowers },
+    { icon: <FiUserCheck />, label: "Abonnements", value: totalFollowing },
+    { icon: <FiHeart />, label: "J'aime", value: love, isLove: true },
+    { icon: <FiEye />, label: "Vues", value: views },
   ];
 
   return (

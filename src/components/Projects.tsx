@@ -45,7 +45,7 @@ export function Projects() {
             <FiCode className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Featured Projects
+            Projets en vedette
           </h2>
         </div>
         <motion.div
@@ -119,7 +119,7 @@ export function Projects() {
                     rel="noopener noreferrer"
                   >
                     <FiExternalLink className="w-4 h-4" />
-                    Live Demo
+                    Démo en direct
                   </motion.a>
                 ) : project.galleryImages && project.galleryImages.length > 0 ? (
                   <motion.button
@@ -131,7 +131,7 @@ export function Projects() {
                     title="Voir les images du projet"
                   >
                     <FiExternalLink className="w-4 h-4" />
-                    Live Demo
+                    Démo en direct
                   </motion.button>
                 ) : (
                   <motion.div
@@ -139,7 +139,7 @@ export function Projects() {
                     title="Déploiement à venir"
                   >
                     <FiExternalLink className="w-4 h-4" />
-                    Live Demo
+                    Démo en direct
                   </motion.div>
                 )}
                 {project.githubUrl && (
@@ -153,7 +153,7 @@ export function Projects() {
                     rel="noopener noreferrer"
                   >
                     <FiGithub className="w-4 h-4" />
-                    GitHub
+                    Voir sur GitHub
                   </motion.a>
                 )}
               </div>

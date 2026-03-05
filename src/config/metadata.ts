@@ -6,7 +6,7 @@ export const metaData: Metadata = {
   ),
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
     siteName: "Mohamed DOUKOURE Portfolio",
     title:
       "Mohamed DOUKOURE | Full Stack Developer — Web & Mobile | UI/UX Designer",

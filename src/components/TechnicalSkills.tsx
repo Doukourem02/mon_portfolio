@@ -25,7 +25,7 @@ export function TechnicalSkills() {
             <FaReact className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Skills
+            Compétences
           </h2>
         </div>
         <motion.div

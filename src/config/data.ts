@@ -1,68 +1,30 @@
-import {
-  FaCss3Alt,
-  FaCube,
-  FaDocker,
-  FaFigma,
-  FaGitAlt,
-  FaHtml5,
-  FaNodeJs,
-  FaPython,
-  FaReact,
-} from "react-icons/fa";
-import {
-  SiAdobephotoshop,
-  SiCloudflare,
-  SiExpo,
-  SiExpress,
-  SiFirebase,
-  SiFramer,
-  SiGraphql,
-  SiJavascript,
-  SiKubernetes,
-  SiMongodb,
-  SiMui,
-  SiNextdotjs,
-  SiPhp,
-  SiPostgresql,
-  SiPostman,
-  SiPrisma,
-  SiReactquery,
-  SiRedux,
-  SiSanity,
-  SiSass,
-  SiSocketdotio,
-  SiStrapi,
-  SiSupabase,
-  SiSymfony,
-  SiTailwindcss,
-  SiTypescript,
-  SiVercel,
-} from "react-icons/si";
+import {FaCss3Alt,FaCube,FaDocker,FaFigma,FaGitAlt,FaHtml5,FaNodeJs,FaPython,FaReact,} from "react-icons/fa";
+import {SiAdobephotoshop,SiCloudflare,SiExpo,SiExpress,SiFirebase,SiFramer,SiGraphql,SiJavascript,SiKubernetes,SiMongodb,SiMui,SiNextdotjs,SiPhp,SiPostgresql,SiPostman,SiPrisma,SiReactquery,SiRedux,SiSanity,SiSass,SiSocketdotio,SiStrapi,SiSupabase,SiSymfony,SiTailwindcss,SiTypescript,SiVercel,} from "react-icons/si";
 
 export const socialLinks = [
   {
     id: 5,
     priority: 1,
     title: "GitHub",
-    url: "https://github.com/dashboard", // ⚠️ À remplacer par votre lien de profil GitHub (ex: https://github.com/votre-username)
+    url: "https://github.com/dashboard", 
   },
   {
     id: 6,
     priority: 2,
     title: "LinkedIn",
-    url: "https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit", // ⚠️ À remplacer par votre lien de profil LinkedIn (ex: https://www.linkedin.com/in/votre-nom)
+    url: "https://www.linkedin.com/feed/", 
   },
   {
     id: 7,
     priority: 3,
     title: "Twitter",
-    url: "https://x.com/home?lang=fr", // ⚠️ À remplacer par votre lien de profil X/Twitter (ex: https://x.com/votre-username)
+    url: "https://x.com/home", 
   },
   {
     id: 8,
     priority: 4,
     title: "Instagram",
-    url: "https://www.instagram.com", // ⚠️ À remplacer par votre lien de profil Instagram (ex: https://www.instagram.com/votre-username)
+    url: "https://www.instagram.com", 
   },
 ];
 
@@ -70,7 +32,7 @@ export const personalInfo = {
   name: "Mohamed DOUKOURE",
   title: "Full Stack Developer — Web & Mobile | UI/UX Designer",
   avatar: "/images/about/Doukoures.webp",
-  email: "", // À remplir avec votre email
+  email: "", 
   location: "Abidjan, Côte d'Ivoire",
   description:
     "Développeur Full Stack passionné par la création d'expériences numériques exceptionnelles. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies modernes, je combine expertise technique et sens du design pour concevoir des applications performantes, intuitives et esthétiques. Toujours à l'affût des dernières tendances en développement et en design UI/UX.",
@@ -409,7 +371,7 @@ export const projects = [
   {
     title: "Nike Reimagined",
     description:
-      "A sleek and modern Nike website redesign showcasing fully responsive design with smooth animations and clean UI inspired by Nike's iconic branding. Built with mobile-first approach and deployed on Vercel for lightning-fast performance.",
+      "Refonte moderne et élégante du site Nike : design entièrement responsive, animations fluides et interface épurée inspirée de l'identité Nike. Développé avec une approche mobile-first et déployé sur Vercel pour des performances optimales.",
     image: "/images/projects/nike-reimagined.webp",
     liveUrl: "https://nike-reimagined-mu.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
@@ -420,7 +382,7 @@ export const projects = [
   {
     title: "News Hub",
     description:
-      "Real-time news application integrating News API to deliver headlines across various categories. Features a modern interface with TypeScript for type safety and shadcn-ui components for a polished user experience.",
+      "Application d'actualités en temps réel intégrant l'API News pour diffuser les titres dans diverses catégories. Interface moderne avec TypeScript pour la sécurité des types et des composants shadcn-ui pour une expérience utilisateur soignée.",
     image: "/images/projects/news-hub.webp",
     liveUrl: "https://news-hub-seven-chi.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
@@ -461,7 +423,7 @@ export const certifications: Array<{
 
 export const githubSection = {
   username: "Doukourem02",
-  title: "GitHub Contributions",
+  title: "Contributions GitHub",
 };
 
 export const socialStats = {
