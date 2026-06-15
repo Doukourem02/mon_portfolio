@@ -3,7 +3,7 @@
 import { projects } from "@/config/data";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiCode, FiExternalLink, FiGithub } from "react-icons/fi";
+import { FiCode, FiExternalLink, FiGithub, FiImage } from "react-icons/fi";
 import { ProjectGallery } from "./ProjectGallery";
 import { useState } from "react";
 
@@ -14,14 +14,23 @@ export function Projects() {
     images: string[];
   } | null>(null);
 
-  const handleLiveDemoClick = (project: (typeof projects)[0], e: React.MouseEvent) => {
-    if (!project.liveUrl && project.galleryImages && project.galleryImages.length > 0) {
+  const openProjectGallery = (project: (typeof projects)[0]) => {
+    if (!project.galleryImages || project.galleryImages.length === 0) return;
+
+    setSelectedProject({
+      title: project.title,
+      images: project.galleryImages,
+    });
+    setGalleryOpen(true);
+  };
+
+  const handleProjectKeyDown = (
+    project: (typeof projects)[0],
+    e: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setSelectedProject({
-        title: project.title,
-        images: project.galleryImages,
-      });
-      setGalleryOpen(true);
+      openProjectGallery(project);
     }
   };
 
@@ -61,12 +70,21 @@ export function Projects() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
+            role={project.galleryImages?.length ? "button" : undefined}
+            tabIndex={project.galleryImages?.length ? 0 : undefined}
+            aria-label={
+              project.galleryImages?.length
+                ? `Voir les images du projet ${project.title}`
+                : undefined
+            }
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.01, y: -2 }}
-            className="rounded-xl overflow-hidden transition-all duration-500 ease-out border border-blue-500/30"
+            onClick={() => openProjectGallery(project)}
+            onKeyDown={(e) => handleProjectKeyDown(project, e)}
+            className="rounded-xl overflow-hidden transition-all duration-500 ease-out border border-blue-500/30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/70"
           >
             <div className="aspect-video bg-gray-800 overflow-hidden">
               <Image
@@ -114,6 +132,7 @@ export function Projects() {
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     href={project.liveUrl}
+                    onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-300 text-sm font-medium"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -121,18 +140,6 @@ export function Projects() {
                     <FiExternalLink className="w-4 h-4" />
                     Démo en direct
                   </motion.a>
-                ) : project.galleryImages && project.galleryImages.length > 0 ? (
-                  <motion.button
-                    whileHover={{ scale: 1.02, x: 2 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={(e) => handleLiveDemoClick(project, e)}
-                    className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-300 text-sm font-medium"
-                    title="Voir les images du projet"
-                  >
-                    <FiExternalLink className="w-4 h-4" />
-                    Démo en direct
-                  </motion.button>
                 ) : (
                   <motion.div
                     className="flex items-center gap-2 text-gray-500 cursor-not-allowed text-sm font-medium opacity-50"
@@ -142,12 +149,29 @@ export function Projects() {
                     Démo en direct
                   </motion.div>
                 )}
+                {project.galleryImages && project.galleryImages.length > 0 && (
+                  <motion.button
+                    whileHover={{ scale: 1.02, x: 2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openProjectGallery(project);
+                    }}
+                    className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors duration-300 text-sm font-medium"
+                    title="Voir les images du projet"
+                  >
+                    <FiImage className="w-4 h-4" />
+                    Photos
+                  </motion.button>
+                )}
                 {project.githubUrl && (
                   <motion.a
                     whileHover={{ scale: 1.02, x: 2 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     href={project.githubUrl}
+                    onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition-colors duration-300 text-sm font-medium"
                     target="_blank"
                     rel="noopener noreferrer"

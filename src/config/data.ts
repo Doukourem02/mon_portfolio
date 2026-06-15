@@ -409,6 +409,7 @@ export const projects = [
     image: "/images/projects/nike-reimagined.webp",
     liveUrl: "https://nike-reimagined-mu.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
+    galleryImages: ["/images/projects/nike-reimagined.webp"],
     techStack: techStack.filter((item) =>
       ["React", "Tailwind"].includes(item.name)
     ),
@@ -420,6 +421,7 @@ export const projects = [
     image: "/images/projects/news-hub.webp",
     liveUrl: "https://news-hub-seven-chi.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
+    galleryImages: ["/images/projects/news-hub.webp"],
     techStack: techStack.filter((item) =>
       ["React", "TypeScript", "Tailwind"].includes(item.name)
     ),
