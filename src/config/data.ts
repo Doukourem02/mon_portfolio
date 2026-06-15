@@ -310,11 +310,11 @@ export const techStack = [
 
 export const projects = [
   {
-    title: "Chrono Livraison",
+    title: "KRONO Livraison",
     description:
       "Plateforme de livraison en temps réel connectant clients, chauffeurs et administrateurs. Monorepo complet avec 4 applications : API REST + Socket.IO (Node.js/Express), dashboard web admin (Next.js 16), app mobile client (Expo/React Native), et app mobile chauffeur. Communication temps réel via WebSocket, géolocalisation avec Google Maps, authentification OTP, suivi de livraisons en direct, et gestion complète des commandes. Backend PostgreSQL/Supabase avec migrations SQL et sécurité JWT.",
     image: "/images/projects/chrono_livraison/chrono2.png",
-    // liveUrl: "", // Pas de déploiement pour l'instant
+    liveUrl: "https://admin.kro-no-delivery.com/login",
     githubUrl: "https://github.com/Doukourem02/app_chrono",
     galleryImages: [
       "/images/projects/chrono_livraison/chrono1.png",
@@ -366,6 +366,40 @@ export const projects = [
         "Firebase",
         "Supabase",
       ].includes(item.name)
+    ),
+  },
+  {
+    title: "Bella Création",
+    description:
+      "Plateforme web dynamique avec panel administrateur complet pour Bellarose création imagination. L'application permet à l'entreprise de gérer elle-même ses prestations, visuels, conseils, témoignages, contenus et informations de contact sans dépendre d'un développeur. Le projet associe une interface publique élégante dédiée à la décoration d'intérieur et à l'apprentissage avec un back-office métier pensé pour donner au client un contrôle total sur son activité digitale.",
+    image: "/images/projects/bella-creation/bella-creation-1.png",
+    liveUrl: "https://bella-interio-design.vercel.app",
+    galleryImages: [
+      "/images/projects/bella-creation/bella-creation-1.png",
+      "/images/projects/bella-creation/bella-creation-2.png",
+      "/images/projects/bella-creation/bella-creation-3.png",
+    ],
+    techStack: techStack.filter((item) =>
+      ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"].includes(
+        item.name
+      )
+    ),
+  },
+  {
+    title: "REPSFECO-CI",
+    description:
+      "Plateforme institutionnelle dynamique pour le Réseau Paix et Sécurité pour les Femmes de l'Espace CEDEAO - Section Côte d'Ivoire. Le site centralise la présentation de l'organisation, ses missions, ses domaines d'intervention et ses actions terrain autour de la paix, de la gouvernance et de l'autonomisation des femmes. Un espace d'administration permet de publier et gérer les activités, transformant le site en véritable outil de communication autonome pour l'organisation.",
+    image: "/images/projects/repsfeco-ci/repsfeco-ci-1.png",
+    liveUrl: "https://repsfeco-ci.vercel.app",
+    galleryImages: [
+      "/images/projects/repsfeco-ci/repsfeco-ci-1.png",
+      "/images/projects/repsfeco-ci/repsfeco-ci-2.png",
+      "/images/projects/repsfeco-ci/repsfeco-ci-3.png",
+    ],
+    techStack: techStack.filter((item) =>
+      ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"].includes(
+        item.name
+      )
     ),
   },
   {
