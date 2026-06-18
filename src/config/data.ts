@@ -414,18 +414,6 @@ export const projects = [
       ["React", "Tailwind"].includes(item.name)
     ),
   },
-  {
-    title: "News Hub",
-    description:
-      "Application d'actualités en temps réel intégrant l'API News pour diffuser les titres dans diverses catégories. Interface moderne avec TypeScript pour la sécurité des types et des composants shadcn-ui pour une expérience utilisateur soignée.",
-    image: "/images/projects/news-hub.webp",
-    liveUrl: "https://news-hub-seven-chi.vercel.app/",
-    githubUrl: "https://github.com/Doukourem02",
-    galleryImages: ["/images/projects/news-hub.webp"],
-    techStack: techStack.filter((item) =>
-      ["React", "TypeScript", "Tailwind"].includes(item.name)
-    ),
-  },
 ];
 
 export const certifications: Array<{
