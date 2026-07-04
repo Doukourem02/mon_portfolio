@@ -320,6 +320,8 @@ export const projects = [
       "/images/projects/chrono_livraison/chrono1.png",
       "/images/projects/chrono_livraison/chrono2.png",
       "/images/projects/chrono_livraison/chrono6.png",
+      "/images/projects/chrono_livraison/IMG_9320.jpg",
+      "/images/projects/chrono_livraison/IMG_9321.jpg",
     ],
     techStack: techStack.filter((item) =>
       [
