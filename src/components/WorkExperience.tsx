@@ -37,6 +37,10 @@ export function WorkExperience() {
         />
       </motion.div>
 
+      <p className="text-gray-300 text-lg mb-10 max-w-3xl">
+        Au-delà de mes missions, j’ai continué à construire des projets concrets, à renforcer mes compétences techniques et à transformer des idées en produits numériques utiles.
+      </p>
+
       <div className="space-y-12 ">
         {workExperience.map((job, index) => (
           <motion.div

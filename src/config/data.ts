@@ -35,7 +35,7 @@ export const personalInfo = {
   email: "", 
   location: "Abidjan, Côte d'Ivoire",
   description:
-    "Développeur Full Stack passionné par la création d'expériences numériques exceptionnelles. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies modernes, je combine expertise technique et sens du design pour concevoir des applications performantes, intuitives et esthétiques. Toujours à l'affût des dernières tendances en développement et en design UI/UX.",
+    "Développeur Full Stack passionné par la création d'expériences numériques modernes, utiles et impactantes. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies les plus performantes, je conçois des solutions digitales à la fois techniques, élégantes et orientées business. Aujourd’hui, je travaille également en freelance sur des projets pour des particuliers, des entrepreneurs et des organisations qui ont besoin de produits web et mobiles solides, modernes et adaptés à leurs objectifs.",
 };
 
 export const heroSection = {
@@ -44,6 +44,19 @@ export const heroSection = {
 };
 
 export const workExperience = [
+  {
+    company: "Freelance / Indépendant",
+    position: "Développeur web, mobile et UI/UX Designer",
+    period: "Début 2025 à aujourd’hui",
+    shortDesc:
+      "Aujourd’hui, j’exerce en tant que développeur freelance indépendant en concevant des solutions digitales modernes pour des particuliers, des entrepreneurs et des organisations.",
+    bulletPoints: [
+      "Création de la plateforme Bella Création, un projet centré sur l’identité digitale, la présentation des services et l’expérience utilisateur.",
+      "Développement du projet REPSFECO-CI, une plateforme institutionnelle conçue en collaboration avec une organisation engagée dans le cadre de la CEDEAO.",
+      "Réalisation de projets web et mobiles autour de la livraison, de l’agriculture et de la transformation numérique d’activités concrètes.",
+      "Conception d’interfaces modernes, intuitives et adaptées aux besoins réels des utilisateurs et des clients.",
+    ],
+  },
   {
     company: "HUAWEI",
     position: "Front Office – Global Network Operation Center (GNOC)",
@@ -312,7 +325,7 @@ export const projects = [
   {
     title: "KRONO Livraison",
     description:
-      "Plateforme de livraison en temps réel connectant clients, chauffeurs et administrateurs. Monorepo complet avec 4 applications : API REST + Socket.IO (Node.js/Express), dashboard web admin (Next.js 16), app mobile client (Expo/React Native), et app mobile chauffeur. Communication temps réel via WebSocket, géolocalisation avec Google Maps, authentification OTP, suivi de livraisons en direct, et gestion complète des commandes. Backend PostgreSQL/Supabase avec migrations SQL et sécurité JWT.",
+      "Plateforme de livraison en temps réel connectant clients, chauffeurs et administrateurs. Monorepo complet avec 4 applications : API REST + Socket.IO (Node.js/Express), dashboard web admin (Next.js 16), application mobile client (Expo/React Native) et application mobile chauffeur. La solution permet un suivi en direct des commandes, une communication instantanée entre les parties, une géolocalisation précise avec Google Maps, une authentification OTP sécurisée, des notifications push en temps réel, ainsi qu’une gestion complète des livraisons, des statuts, des paiements et des opérations administratives. Le backend repose sur PostgreSQL/Supabase avec migrations SQL et sécurité JWT.",
     image: "/images/projects/chrono_livraison/chrono2.png",
     liveUrl: "https://admin.kro-no-delivery.com/login",
     githubUrl: "https://github.com/Doukourem02/app_chrono",

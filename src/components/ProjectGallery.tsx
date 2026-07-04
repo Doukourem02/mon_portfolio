@@ -96,6 +96,8 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
                       src={images[currentIndex]}
                       alt={`${title} - Image ${currentIndex + 1}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                      quality={100}
                       className="object-contain"
                       priority
                     />
@@ -150,6 +152,8 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
                           src={img}
                           alt={`Thumbnail ${index + 1}`}
                           fill
+                          sizes="(max-width: 768px) 100vw, 120px"
+                          quality={90}
                           className="object-cover"
                         />
                       </button>
