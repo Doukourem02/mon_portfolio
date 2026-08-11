@@ -356,14 +356,13 @@ export const projects = [
   {
     title: "Projet Sainain",
     description:
-      "Plateforme de marketplace agricole connectant producteurs, acheteurs et transporteurs. Application mobile React Native/Expo avec backend Node.js/Express et PostgreSQL. Fonctionnalités complètes : gestion de commandes, système de notation, tracking GPS en temps réel via Socket.io, notifications push, géolocalisation, et interface complète pour les 3 rôles. Architecture solide avec Prisma ORM, validation Joi, logging Winston, documentation Swagger, et CI/CD pipeline.",
-    image: "/images/projects/projet_sainain/sainain1.png",
+      "Marketplace agricole mobile mettant en relation producteurs et acheteurs, avec un assistant IA agricole intégré (conseiller virtuel propulsé par GPT-4o-mini, avec historique de conversations) pour aider les producteurs sur la production, la certification et la mise en marché. Chat temps réel via Socket.IO depuis les fiches produits ou les demandes d'achat, workflow de commandes (demande → confirmation producteur), publication d'annonces d'achat avec notification automatique des producteurs concernés, et météo locale intégrée. Application mobile React Native/Expo, backend Node.js/Express et PostgreSQL (Supabase), authentification via Clerk. Architecture soignée avec Prisma ORM, validation Joi, logging Winston, documentation Swagger et pipeline CI/CD.",
+    image: "/images/projects/projet_sainain/sainain4.jpg",
     // liveUrl: "", // Pas de déploiement pour l'instant
     githubUrl: "https://github.com/Doukourem02/PROJET_SAINAIN",
     galleryImages: [
-      "/images/projects/projet_sainain/sainain1.png",
-      "/images/projects/projet_sainain/sainain2.jpg",
-      "/images/projects/projet_sainain/sainain3.jpg",
+      "/images/projects/projet_sainain/sainain4.jpg",
+      "/images/projects/projet_sainain/sainain5.png",
     ],
     techStack: techStack.filter((item) =>
       [
@@ -378,7 +377,6 @@ export const projects = [
         "Prisma",
         "Expo",
         "Zustand",
-        "Firebase",
         "Supabase",
       ].includes(item.name)
     ),
