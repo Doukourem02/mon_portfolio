@@ -1,10 +1,16 @@
 "use client"
 
-import { workExperience } from "@/config/data"
+import type { Experience } from "@/content/types"
 import { motion } from "framer-motion"
 import { FiBriefcase } from "react-icons/fi"
 
-export function WorkExperience() {
+export function WorkExperience({
+  intro,
+  experiences,
+}: {
+  intro: string
+  experiences: Experience[]
+}) {
   return (
     <div className="mb-16">
       <motion.div
@@ -37,12 +43,10 @@ export function WorkExperience() {
         />
       </motion.div>
 
-      <p className="text-gray-300 text-lg mb-10 max-w-3xl">
-        Au-delà de mes missions, j’ai continué à construire des projets concrets, à renforcer mes compétences techniques et à transformer des idées en produits numériques utiles.
-      </p>
+      {intro && <p className="text-gray-300 text-lg mb-10 max-w-3xl">{intro}</p>}
 
       <div className="space-y-12 ">
-        {workExperience.map((job, index) => (
+        {experiences.map((job, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}

@@ -1,10 +1,11 @@
 "use client";
 
-import { techStack } from "@/config/data";
+import type { Skill } from "@/content/types";
+import { getSkillIcon } from "@/lib/icons";
 import { motion } from "framer-motion";
 import { FaReact } from "react-icons/fa";
 
-export function TechnicalSkills() {
+export function TechnicalSkills({ skills }: { skills: Skill[] }) {
   return (
     <div className="mb-16">
       <motion.div
@@ -38,8 +39,8 @@ export function TechnicalSkills() {
       </motion.div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {techStack.map((skill, index) => {
-          const IconComponent = skill.icon;
+        {skills.map((skill, index) => {
+          const IconComponent = getSkillIcon(skill.icon);
           return (
             <motion.div
               key={index}

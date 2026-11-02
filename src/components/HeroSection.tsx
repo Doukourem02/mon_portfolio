@@ -1,6 +1,6 @@
 "use client";
 
-import { heroSection } from "@/config/data";
+import type { Profile } from "@/content/types";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
@@ -26,15 +26,12 @@ function getSocialIcon(title: string) {
   }
 }
 
-export function HeroSection() {
-  const { avatar, name, title, description, location, email } =
-    heroSection.personalInfo;
+export function HeroSection({ profile }: { profile: Profile }) {
+  const { avatar, name, title, description, location, email, socialLinks } =
+    profile;
 
   return (
     <>
-      {/* 🔥 Preload avatar for instant render */}
-      <link rel="preload" href={avatar} as="image" type="image/webp" />
-
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mb-16">
         {/* Left side - Avatar + socials */}
         <motion.div
@@ -73,7 +70,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             className="flex w-full items-center gap-4 justify-between"
           >
-            {heroSection.socialLinks.map(({ title, url }, index) => (
+            {socialLinks.map(({ title, url }, index) => (
               <motion.a
                 key={title}
                 title={title}

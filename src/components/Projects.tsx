@@ -1,20 +1,21 @@
 "use client";
 
-import { projects } from "@/config/data";
+import type { Project } from "@/content/types";
+import { getSkillIcon } from "@/lib/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiCode, FiExternalLink, FiGithub, FiImage } from "react-icons/fi";
 import { ProjectGallery } from "./ProjectGallery";
 import { useState } from "react";
 
-export function Projects() {
+export function Projects({ projects }: { projects: Project[] }) {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<{
     title: string;
     images: string[];
   } | null>(null);
 
-  const openProjectGallery = (project: (typeof projects)[0]) => {
+  const openProjectGallery = (project: Project) => {
     if (!project.galleryImages || project.galleryImages.length === 0) return;
 
     setSelectedProject({
@@ -25,7 +26,7 @@ export function Projects() {
   };
 
   const handleProjectKeyDown = (
-    project: (typeof projects)[0],
+    project: Project,
     e: React.KeyboardEvent<HTMLDivElement>
   ) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -87,6 +88,7 @@ export function Projects() {
             className="rounded-xl overflow-hidden transition-all duration-500 ease-out border border-blue-500/30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/70"
           >
             <div className="aspect-video bg-gray-800 overflow-hidden">
+              {project.image && (
               <Image
                 src={project.image}
                 alt={project.title}
@@ -94,6 +96,7 @@ export function Projects() {
                 height={300}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
+              )}
             </div>
             <div className="p-6">
               <div className="flex  items-center justify-between mb-3">
@@ -102,7 +105,7 @@ export function Projects() {
                 </h3>
                 <div className="flex items-center gap-2">
                   {project.techStack.map((tech, techIndex) => {
-                    const Icon = tech.icon;
+                    const Icon = getSkillIcon(tech.icon);
                     return (
                       <motion.div
                         key={techIndex}

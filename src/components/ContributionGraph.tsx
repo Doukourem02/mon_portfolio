@@ -11,7 +11,7 @@ import {
   FiHeart,
   FiEye,
 } from "react-icons/fi";
-import { githubSection, socialStats } from "@/config/data";
+import type { Profile } from "@/content/types";
 
 // 🧠 Lazy-load GitHubCalendar for performance
 const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
@@ -36,9 +36,15 @@ const githubTheme = {
   dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
 };
 
-export default function ContributionGraph() {
-  const username = githubSection.username;
-  const { title } = githubSection;
+export default function ContributionGraph({
+  username,
+  title,
+  socialStats,
+}: {
+  username: string;
+  title: string;
+  socialStats: Profile["socialStats"];
+}) {
 
   const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>();
   const [views, setViews] = useState(0);

@@ -1,11 +1,11 @@
 "use client"
 
-import { certifications } from "@/config/data"
+import type { Certification } from "@/content/types"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { FaCertificate } from "react-icons/fa"
 
-export function Certifications() {
+export function Certifications({ certifications }: { certifications: Certification[] }) {
   return (
     <div className="mb-16">
       <motion.div

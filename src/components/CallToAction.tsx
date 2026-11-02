@@ -3,9 +3,16 @@
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import { personalInfo } from "@/config/data";
 
-export function CallToAction() {
+export function CallToAction({
+  email,
+  title,
+  text,
+}: {
+  email: string;
+  title: string;
+  text: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -32,7 +39,7 @@ export function CallToAction() {
             <FaRocket className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Créons ensemble quelque chose d'exceptionnel
+            {title}
           </h2>
         </div>
         <motion.div
@@ -51,9 +58,7 @@ export function CallToAction() {
         viewport={{ once: true }}
         className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
       >
-        Prêt à donner vie à vos idées ? Je suis toujours enthousiaste à l'idée de
-        collaborer sur des projets innovants et de transformer votre vision en
-        réalité.
+        {text}
       </motion.p>
 
       <motion.div
@@ -66,10 +71,10 @@ export function CallToAction() {
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <a
             className="flex items-center border border-blue-700/50 text-blue-300 hover:bg-blue-900/30 transition-all duration-300 py-2 px-4 rounded-sm"
-            href={`mailto:${personalInfo.email}`}
+            href={`mailto:${email}`}
           >
             <FiMail className="w-5 h-5 mr-2" />
-            <span>{personalInfo.email}</span>
+            <span>{email}</span>
           </a>
         </motion.div>
       </motion.div>

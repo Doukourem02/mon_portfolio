@@ -1,5 +1,12 @@
-import {FaCss3Alt,FaCube,FaDocker,FaFigma,FaGitAlt,FaHtml5,FaNodeJs,FaPython,FaReact,} from "react-icons/fa";
-import {SiAdobephotoshop,SiCloudflare,SiExpo,SiExpress,SiFirebase,SiFramer,SiGraphql,SiJavascript,SiKubernetes,SiMongodb,SiMui,SiNextdotjs,SiPhp,SiPostgresql,SiPostman,SiPrisma,SiReactquery,SiRedux,SiSanity,SiSass,SiSocketdotio,SiStrapi,SiSupabase,SiSymfony,SiTailwindcss,SiTypescript,SiVercel,} from "react-icons/si";
+/**
+ * Contenu de secours du portfolio.
+ *
+ * Le contenu réel est géré dans Sanity (page /studio du site).
+ * Ce fichier sert uniquement :
+ *  - de contenu affiché si Sanity n'est pas configuré ou ne répond pas ;
+ *  - de source pour l'import initial (npm run sanity:seed).
+ * Inutile de le modifier pour mettre à jour le site.
+ */
 
 export const socialLinks = [
   {
@@ -38,9 +45,12 @@ export const personalInfo = {
     "Développeur Full Stack passionné par la création d'expériences numériques modernes, utiles et impactantes. Spécialisé dans le développement web et mobile avec TypeScript, Node.js, Next.js, React et les technologies les plus performantes, je conçois des solutions digitales à la fois techniques, élégantes et orientées business. Aujourd’hui, je travaille également en freelance sur des projets pour des particuliers, des entrepreneurs et des organisations qui ont besoin de produits web et mobiles solides, modernes et adaptés à leurs objectifs.",
 };
 
-export const heroSection = {
-  personalInfo: personalInfo,
-  socialLinks: socialLinks,
+export const sectionTexts = {
+  experienceIntro:
+    "Au-delà de mes missions, j’ai continué à construire des projets concrets, à renforcer mes compétences techniques et à transformer des idées en produits numériques utiles.",
+  ctaTitle: "Créons ensemble quelque chose d'exceptionnel",
+  ctaText:
+    "Prêt à donner vie à vos idées ? Je suis toujours enthousiaste à l'idée de collaborer sur des projets innovants et de transformer votre vision en réalité.",
 };
 
 export const workExperience = [
@@ -101,81 +111,81 @@ export const techStack = [
   // === FRONTEND ===
   {
     name: "HTML",
-    icon: FaHtml5,
+    icon: "FaHtml5",
     color: "text-orange-500",
     type: "Frontend",
   },
   {
     name: "CSS",
-    icon: FaCss3Alt,
+    icon: "FaCss3Alt",
     color: "text-blue-500",
     type: "Frontend",
   },
   {
     name: "JavaScript",
-    icon: SiJavascript,
+    icon: "SiJavascript",
     color: "text-yellow-400",
     type: "Frontend",
   },
   {
     name: "TypeScript",
-    icon: SiTypescript,
+    icon: "SiTypescript",
     color: "text-blue-500",
     type: "Frontend",
   },
   {
     name: "Tailwind",
-    icon: SiTailwindcss,
+    icon: "SiTailwindcss",
     color: "text-cyan-400",
     type: "Frontend",
   },
   {
     name: "SCSS",
-    icon: SiSass,
+    icon: "SiSass",
     color: "text-pink-600",
     type: "Frontend",
   },
   {
     name: "Material UI",
-    icon: SiMui,
+    icon: "SiMui",
     color: "text-blue-400",
     type: "Frontend",
   },
   {
     name: "Framer",
-    icon: SiFramer,
+    icon: "SiFramer",
     color: "text-pink-500",
     type: "Frontend",
   },
-  { name: "React", icon: FaReact, color: "text-blue-400", type: "Frontend" },
+  { name: "React", icon: "FaReact", color: "text-blue-400", type: "Frontend" },
   {
     name: "React Native",
-    icon: FaReact,
+    icon: "FaReact",
     color: "text-cyan-400",
     type: "Frontend",
   },
   {
     name: "Redux",
-    icon: SiRedux,
+    icon: "SiRedux",
     color: "text-purple-700",
     type: "Frontend",
   },
   {
     name: "React Query",
-    icon: SiReactquery,
+    icon: "SiReactquery",
     color: "text-red-500",
     type: "Frontend",
   },
   {
     name: "Zustand",
-    icon: FaCube,
+    icon: "FaCube",
     color: "text-orange-500",
     type: "Frontend",
   },
-  { name: "Next.js", icon: SiNextdotjs, color: "text-white", type: "Frontend" },
+  { name: "Next.js", icon: "SiNextdotjs", color: "text-white", type: "Frontend" },
   {
     name: "Expo",
-    icon: SiExpo,
+    icon: "SiExpo",
     color: "text-gray-800",
     type: "Frontend",
   },
@@ -183,73 +193,73 @@ export const techStack = [
   // === BACKEND & DATABASES ===
   {
     name: "Python",
-    icon: FaPython,
+    icon: "FaPython",
     color: "text-yellow-300",
     type: "Backend & Databases",
   },
   {
     name: "PHP",
-    icon: SiPhp,
+    icon: "SiPhp",
     color: "text-indigo-400",
     type: "Backend & Databases",
   },
   {
     name: "Node.js",
-    icon: FaNodeJs,
+    icon: "FaNodeJs",
     color: "text-green-500",
     type: "Backend & Databases",
   },
   {
     name: "Express",
-    icon: SiExpress,
+    icon: "SiExpress",
     color: "text-gray-500",
     type: "Backend & Databases",
   },
   {
     name: "Socket.IO",
-    icon: SiSocketdotio,
+    icon: "SiSocketdotio",
     color: "text-white",
     type: "Backend & Databases",
   },
   {
     name: "Symfony",
-    icon: SiSymfony,
+    icon: "SiSymfony",
     color: "text-black",
     type: "Backend & Databases",
   },
   {
     name: "MongoDB",
-    icon: SiMongodb,
+    icon: "SiMongodb",
     color: "text-green-600",
     type: "Backend & Databases",
   },
   {
     name: "PostgreSQL",
-    icon: SiPostgresql,
+    icon: "SiPostgresql",
     color: "text-blue-600",
     type: "Backend & Databases",
   },
   {
     name: "Firebase",
-    icon: SiFirebase,
+    icon: "SiFirebase",
     color: "text-orange-400",
     type: "Backend & Databases",
   },
   {
     name: "Supabase",
-    icon: SiSupabase,
+    icon: "SiSupabase",
     color: "text-green-400",
     type: "Backend & Databases",
   },
   {
     name: "Prisma",
-    icon: SiPrisma,
+    icon: "SiPrisma",
     color: "text-teal-400",
     type: "Backend & Databases",
   },
   {
     name: "GraphQL",
-    icon: SiGraphql,
+    icon: "SiGraphql",
     color: "text-pink-500",
     type: "Backend & Databases",
   },
@@ -257,13 +267,13 @@ export const techStack = [
   // === CMS ===
   {
     name: "Sanity",
-    icon: SiSanity,
+    icon: "SiSanity",
     color: "text-red-500",
     type: "CMS",
   },
   {
     name: "Strapi",
-    icon: SiStrapi,
+    icon: "SiStrapi",
     color: "text-purple-500",
     type: "CMS",
   },
@@ -271,37 +281,37 @@ export const techStack = [
   // === TOOLS & DEVOPS ===
   {
     name: "Docker",
-    icon: FaDocker,
+    icon: "FaDocker",
     color: "text-blue-500",
     type: "Tools & DevOps",
   },
   {
     name: "Kubernetes",
-    icon: SiKubernetes,
+    icon: "SiKubernetes",
     color: "text-blue-400",
     type: "Tools & DevOps",
   },
   {
     name: "Vercel",
-    icon: SiVercel,
+    icon: "SiVercel",
     color: "text-white",
     type: "Tools & DevOps",
   },
   {
     name: "Git",
-    icon: FaGitAlt,
+    icon: "FaGitAlt",
     color: "text-orange-500",
     type: "Tools & DevOps",
   },
   {
     name: "Postman",
-    icon: SiPostman,
+    icon: "SiPostman",
     color: "text-orange-600",
     type: "Tools & DevOps",
   },
   {
     name: "Cloudflare",
-    icon: SiCloudflare,
+    icon: "SiCloudflare",
     color: "text-orange-400",
     type: "Tools & DevOps",
   },
@@ -309,13 +319,13 @@ export const techStack = [
   // === DESIGN ===
   {
     name: "Figma",
-    icon: FaFigma,
+    icon: "FaFigma",
     color: "text-purple-400",
     type: "Design",
   },
   {
     name: "Photoshop",
-    icon: SiAdobephotoshop,
+    icon: "SiAdobephotoshop",
     color: "text-blue-500",
     type: "Design",
   },
@@ -336,8 +346,7 @@ export const projects = [
       "/images/projects/chrono_livraison/IMG_9320.jpg",
       "/images/projects/chrono_livraison/IMG_9321.jpg",
     ],
-    techStack: techStack.filter((item) =>
-      [
+    technologies: [
         "React",
         "React Native",
         "TypeScript",
@@ -350,8 +359,7 @@ export const projects = [
         "Expo",
         "Zustand",
         "React Query",
-      ].includes(item.name)
-    ),
+      ],
   },
   {
     title: "Projet Sainain",
@@ -364,8 +372,7 @@ export const projects = [
       "/images/projects/projet_sainain/sainain4.jpg",
       "/images/projects/projet_sainain/sainain5.png",
     ],
-    techStack: techStack.filter((item) =>
-      [
+    technologies: [
         "React",
         "React Native",
         "TypeScript",
@@ -378,8 +385,7 @@ export const projects = [
         "Expo",
         "Zustand",
         "Supabase",
-      ].includes(item.name)
-    ),
+      ],
   },
   {
     title: "Bella Création",
@@ -392,11 +398,7 @@ export const projects = [
       "/images/projects/bella-creation/bella-creation-2.png",
       "/images/projects/bella-creation/bella-creation-3.png",
     ],
-    techStack: techStack.filter((item) =>
-      ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"].includes(
-        item.name
-      )
-    ),
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
   },
   {
     title: "REPSFECO-CI",
@@ -409,11 +411,7 @@ export const projects = [
       "/images/projects/repsfeco-ci/repsfeco-ci-2.png",
       "/images/projects/repsfeco-ci/repsfeco-ci-3.png",
     ],
-    techStack: techStack.filter((item) =>
-      ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"].includes(
-        item.name
-      )
-    ),
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
   },
   {
     title: "Nike Reimagined",
@@ -423,9 +421,7 @@ export const projects = [
     liveUrl: "https://nike-reimagined-mu.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
     galleryImages: ["/images/projects/nike-reimagined.webp"],
-    techStack: techStack.filter((item) =>
-      ["React", "Tailwind"].includes(item.name)
-    ),
+    technologies: ["React", "Tailwind"],
   },
 ];
 

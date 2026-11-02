@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { personalInfo } from "@/config/data";
 
-export function Header() {
+export function Header({ name }: { name: string }) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.ico"
-              alt={`${personalInfo.name} logo`}
+              alt={`${name} logo`}
               className="rounded-full h-12 w-12"
               width={72}
               height={72}
