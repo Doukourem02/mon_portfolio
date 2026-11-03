@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, cloneElement } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -31,6 +31,24 @@ import {
   setViewsServerAction,
 } from "@/app/api/viewsActions";
 
+const MONTHS_FR = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
+const WEEKDAYS_FR = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+
+type Year = "last" | number;
+type Tooltip = { text: string; x: number; y: number } | null;
+
+/** « 3 contributions le mardi 12 mai 2026 » */
+function tooltipText(date: string, count: number) {
+  const label = new Date(`${date}T12:00:00`).toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const what = count === 0 ? "Aucune contribution" : `${count} contribution${count > 1 ? "s" : ""}`;
+  return `${what} le ${label}`;
+}
+
 const githubTheme = {
   light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
   dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
@@ -57,17 +75,56 @@ export default function ContributionGraph({
 
   const graphRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Auto-scroll contribution graph
+  // 📅 Année affichée (comme sur GitHub) + totaux par année
+  const [year, setYear] = useState<Year>("last");
+  const [totals, setTotals] = useState<Record<string, number>>({});
+  const [lastYearTotal, setLastYearTotal] = useState<number | null>(null);
+  const [tooltip, setTooltip] = useState<Tooltip>(null);
+
   useEffect(() => {
-    const scrollToRight = () => {
-      graphRef.current?.scrollTo({
-        left: graphRef.current.scrollWidth,
-        behavior: "smooth",
-      });
+    let cancelled = false;
+    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=all`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((data: { total: Record<string, number>; contributions: { date: string; count: number }[] }) => {
+        if (cancelled) return;
+        setTotals(data.total ?? {});
+        // Total des 12 derniers mois (même calcul que GitHub)
+        const since = new Date();
+        since.setFullYear(since.getFullYear() - 1);
+        const sinceStr = since.toISOString().slice(0, 10);
+        const today = new Date().toISOString().slice(0, 10);
+        setLastYearTotal(
+          data.contributions
+            .filter((c) => c.date > sinceStr && c.date <= today)
+            .reduce((sum, c) => sum + c.count, 0)
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
     };
-    const timer = setTimeout(scrollToRight, 1200);
+  }, [username]);
+
+  const years = Object.keys(totals)
+    .map(Number)
+    .sort((a, b) => b - a);
+  const currentCount = year === "last" ? lastYearTotal : totals[String(year)];
+  const countTitle =
+    currentCount == null
+      ? null
+      : `${currentCount} contribution${currentCount > 1 ? "s" : ""} ${
+          year === "last" ? "au cours de la dernière année" : `en ${year}`
+        }`;
+
+  // ✅ Auto-scroll : fin du graphique pour l'année en cours, début sinon
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const el = graphRef.current;
+      if (!el) return;
+      el.scrollTo({ left: year === "last" ? el.scrollWidth : 0, behavior: "smooth" });
+    }, 1200);
     return () => clearTimeout(timer);
-  }, []);
+  }, [year]);
 
   // ✅ Handle theme
   useEffect(() => {
@@ -138,7 +195,7 @@ export default function ContributionGraph({
     localStorage.setItem("hasLoved", "true");
     try {
       const res = await setLoveCountServerAction();
-      setLove(res.count);
+      if (typeof res.count === "number") setLove(res.count);
     } catch (error) {
       console.error("Love count error:", error);
     }
@@ -175,29 +232,90 @@ export default function ContributionGraph({
         <div className="h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       </motion.div>
 
-      {/* Graph */}
-      <motion.div
-        ref={graphRef}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="
-          w-full md:w-[90%] lg:w-[80%] xl:w-[78%]
-          mx-auto overflow-x-auto border border-blue-500/30
-          rounded-xl p-3 md:p-5 dark:bg-primary-bg bg-secondary-bg
-          shadow-md scrollbar-none
-        "
-      >
-        <GitHubCalendar
-          username={username}
-          colorScheme={serverTheme}
-          theme={{ light: githubTheme.light, dark: githubTheme.dark }}
-          blockSize={11}
-          blockMargin={3}
-          fontSize={13}
-        />
-      </motion.div>
+      {/* Graph (modèle GitHub : total, années, jours, dates au survol) */}
+      <div className="w-full mx-auto">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+          <p className="text-lg md:text-xl font-semibold text-white min-h-[1.75rem]">
+            {countTitle}
+          </p>
+
+          {/* Sélecteur d'année */}
+          {years.length > 0 && (
+            <div className="flex gap-1 overflow-x-auto scrollbar-none -mx-1 px-1">
+              {(["last", ...years] as Year[]).map((y) => (
+                <button
+                  key={String(y)}
+                  type="button"
+                  onClick={() => setYear(y)}
+                  aria-pressed={year === y}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                    year === y
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800/60"
+                  }`}
+                >
+                  {y === "last" ? "12 mois" : y}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <motion.div
+          ref={graphRef}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="
+            overflow-x-auto border border-blue-500/30
+            rounded-xl p-3 md:p-5 dark:bg-primary-bg bg-secondary-bg
+            shadow-md scrollbar-none
+          "
+          onMouseLeave={() => setTooltip(null)}
+        >
+          <GitHubCalendar
+            username={username}
+            year={year}
+            colorScheme={serverTheme}
+            theme={{ light: githubTheme.light, dark: githubTheme.dark }}
+            blockSize={11}
+            blockMargin={3}
+            fontSize={13}
+            showWeekdayLabels
+            hideTotalCount
+            labels={{
+              months: MONTHS_FR,
+              weekdays: WEEKDAYS_FR,
+              legend: { less: "Moins", more: "Plus" },
+            }}
+            renderBlock={(block, activity) =>
+              cloneElement(block, {
+                onMouseEnter: (e: React.MouseEvent<SVGRectElement>) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  setTooltip({
+                    text: tooltipText(activity.date, activity.count),
+                    x: r.left + r.width / 2,
+                    y: r.top,
+                  });
+                },
+                onMouseLeave: () => setTooltip(null),
+              })
+            }
+          />
+        </motion.div>
+      </div>
+
+      {/* Infobulle de date */}
+      {tooltip && (
+        <div
+          role="tooltip"
+          className="fixed z-50 pointer-events-none -translate-x-1/2 -translate-y-full -mt-2 px-2.5 py-1.5 rounded-md bg-gray-800 text-white text-xs whitespace-nowrap shadow-lg"
+          style={{ left: tooltip.x, top: tooltip.y - 6 }}
+        >
+          {tooltip.text}
+        </div>
+      )}
 
       {/* Info Cards */}
       <div

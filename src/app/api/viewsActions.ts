@@ -5,6 +5,7 @@ import { redis } from "@/lib/upstash";
 const VIEWS_KEY = "views";
 
 export async function getViewsServerAction() {
+  if (!redis) return { success: true, views: 0 };
   try {
     const views = await redis.get<number>(VIEWS_KEY);
     return { success: true, views: views ?? 0 };
@@ -19,6 +20,7 @@ export async function getViewsServerAction() {
 }
 
 export async function setViewsServerAction() {
+  if (!redis) return { success: true, message: "Counter disabled" };
   try {
     await redis.incr(VIEWS_KEY);
     return { success: true, message: "View added successfully" };

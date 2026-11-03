@@ -5,6 +5,7 @@ import { redis } from "@/lib/upstash";
 const LOVE_COUNT_KEY = "love_count";
 
 export async function getLoveCountServerAction() {
+  if (!redis) return { success: true, count: 0 };
   try {
     const count = await redis.get<number>(LOVE_COUNT_KEY);
     return { success: true, count: count ?? 0 };
@@ -19,6 +20,8 @@ export async function getLoveCountServerAction() {
 }
 
 export async function setLoveCountServerAction() {
+  // Compteur désactivé : on laisse l'interface garder son +1 local.
+  if (!redis) return { success: false, count: null };
   try {
     const newCount = await redis.incr(LOVE_COUNT_KEY);
     return { success: true, count: newCount };
