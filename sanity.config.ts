@@ -9,6 +9,7 @@ import { visionTool } from "@sanity/vision";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schemaTypes } from "./src/sanity/schemaTypes";
 import { structure } from "./src/sanity/structure";
+import { StudioLayout } from "./src/sanity/adminFlag";
 
 const SINGLETONS = new Set(["profile"]);
 
@@ -29,5 +30,7 @@ export default defineConfig({
         ? actions.filter(({ action }) => action && ["publish", "discardChanges", "restore"].includes(action))
         : actions,
   },
+  // Mémorise sur l'appareil qu'un éditeur est connecté (affiche l'engrenage sur le site).
+  studio: { components: { layout: StudioLayout } },
   plugins: [structureTool({ structure, title: "Contenu" }), visionTool({ defaultApiVersion: apiVersion })],
 });

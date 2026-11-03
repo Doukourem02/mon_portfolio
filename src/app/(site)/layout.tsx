@@ -1,4 +1,4 @@
-import { Header } from "@/components";
+import { Footer, Header } from "@/components";
 import { getContent } from "@/content/getContent";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
@@ -19,6 +19,9 @@ export default async function SiteLayout({
 
       {/* 🔥 Page Content */}
       {children}
+
+      {/* 🔻 Pied de page (accès discret au Studio) */}
+      <Footer name={profile.name} />
 
       {/* 📊 Analytics */}
       {gaId && <GoogleAnalytics gaId={gaId} />}

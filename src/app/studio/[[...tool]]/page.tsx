@@ -1,13 +1,12 @@
 /**
  * Studio Sanity : l'interface d'administration du portfolio (/studio).
  */
-import { NextStudio } from "next-sanity/studio";
-import config from "../../../../sanity.config";
+import { StudioClient } from "@/sanity/StudioClient";
 
 export const dynamic = "force-static";
 
 export { metadata, viewport } from "next-sanity/studio";
 
 export default function StudioPage() {
-  return <NextStudio config={config} />;
+  return <StudioClient />;
 }
