@@ -1,4 +1,5 @@
 "use client";
+import { useT } from "@/i18n/LocaleProvider";
 
 import type { Skill } from "@/content/types";
 import { getSkillIcon } from "@/lib/icons";
@@ -6,6 +7,7 @@ import { motion } from "framer-motion";
 import { FaReact } from "react-icons/fa";
 
 export function TechnicalSkills({ skills }: { skills: Skill[] }) {
+  const t = useT();
   return (
     <div className="mb-16">
       <motion.div
@@ -26,7 +28,7 @@ export function TechnicalSkills({ skills }: { skills: Skill[] }) {
             <FaReact className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Compétences
+            {t.sections.skills}
           </h2>
         </div>
         <motion.div

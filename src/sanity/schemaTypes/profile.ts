@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { UserIcon } from "@sanity/icons/User";
+import { englishField } from "./english";
 
 export const profileType = defineType({
   name: "profile",
@@ -11,6 +12,7 @@ export const profileType = defineType({
     { name: "social", title: "Réseaux sociaux" },
     { name: "texts", title: "Textes des sections" },
     { name: "github", title: "GitHub & stats" },
+    { name: "english", title: "🇬🇧 Anglais" },
   ],
   fields: [
     defineField({ name: "name", title: "Nom complet", type: "string", group: "identity", validation: (r) => r.required() }),
@@ -76,6 +78,14 @@ export const profileType = defineType({
         defineField({ name: "instagramFollowing", title: "Abonnements Instagram", type: "number" }),
       ],
     }),
+
+    // Traductions anglaises (un champ vide reprend le français)
+    englishField("title", "Titre / métier", "string", { group: "english" }),
+    englishField("description", "Présentation", "text", { group: "english" }),
+    englishField("experienceIntro", "Intro de « Parcours professionnel »", "text", { group: "english" }),
+    englishField("ctaTitle", "Titre de la section contact", "string", { group: "english" }),
+    englishField("ctaText", "Texte de la section contact", "text", { group: "english" }),
+    englishField("githubTitle", "Titre de la section GitHub", "string", { group: "english" }),
   ],
   preview: { select: { title: "name", subtitle: "title", media: "avatar" } },
 });

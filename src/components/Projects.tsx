@@ -1,37 +1,22 @@
 "use client";
+import { useT } from "@/i18n/LocaleProvider";
 
 import type { Project } from "@/content/types";
 import { getSkillIcon } from "@/lib/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiCode, FiExternalLink, FiGithub, FiImage } from "react-icons/fi";
-import { ProjectGallery } from "./ProjectGallery";
+import { FiArrowUpRight, FiCode, FiExternalLink, FiGithub } from "react-icons/fi";
+import { ProjectDetail } from "./ProjectDetail";
 import { useState } from "react";
 
 export function Projects({ projects }: { projects: Project[] }) {
-  const [galleryOpen, setGalleryOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<{
-    title: string;
-    images: string[];
-  } | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const t = useT();
 
-  const openProjectGallery = (project: Project) => {
-    if (!project.galleryImages || project.galleryImages.length === 0) return;
-
-    setSelectedProject({
-      title: project.title,
-      images: project.galleryImages,
-    });
-    setGalleryOpen(true);
-  };
-
-  const handleProjectKeyDown = (
-    project: Project,
-    e: React.KeyboardEvent<HTMLDivElement>
-  ) => {
+  const handleProjectKeyDown = (index: number, e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openProjectGallery(project);
+      setOpenIndex(index);
     }
   };
 
@@ -55,7 +40,7 @@ export function Projects({ projects }: { projects: Project[] }) {
             <FiCode className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Projets en vedette
+            {t.sections.projects}
           </h2>
         </div>
         <motion.div
@@ -71,20 +56,16 @@ export function Projects({ projects }: { projects: Project[] }) {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            role={project.galleryImages?.length ? "button" : undefined}
-            tabIndex={project.galleryImages?.length ? 0 : undefined}
-            aria-label={
-              project.galleryImages?.length
-                ? `Voir les images du projet ${project.title}`
-                : undefined
-            }
+            role="button"
+            tabIndex={0}
+            aria-label={t.projects.viewProjectNamed(project.title)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.01, y: -2 }}
-            onClick={() => openProjectGallery(project)}
-            onKeyDown={(e) => handleProjectKeyDown(project, e)}
+            onClick={() => setOpenIndex(index)}
+            onKeyDown={(e) => handleProjectKeyDown(index, e)}
             className="rounded-xl overflow-hidden transition-all duration-500 ease-out border border-blue-500/30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/70"
           >
             <div className="aspect-video bg-gray-800 overflow-hidden">
@@ -141,33 +122,31 @@ export function Projects({ projects }: { projects: Project[] }) {
                     rel="noopener noreferrer"
                   >
                     <FiExternalLink className="w-4 h-4" />
-                    Démo en direct
+                    {t.projects.liveDemo}
                   </motion.a>
                 ) : (
                   <motion.div
                     className="flex items-center gap-2 text-gray-500 cursor-not-allowed text-sm font-medium opacity-50"
-                    title="Déploiement à venir"
+                    title={t.projects.comingSoon}
                   >
                     <FiExternalLink className="w-4 h-4" />
-                    Démo en direct
+                    {t.projects.liveDemo}
                   </motion.div>
                 )}
-                {project.galleryImages && project.galleryImages.length > 0 && (
-                  <motion.button
+                <motion.button
                     whileHover={{ scale: 1.02, x: 2 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      openProjectGallery(project);
+                      setOpenIndex(index);
                     }}
                     className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors duration-300 text-sm font-medium"
-                    title="Voir les images du projet"
+                    title={t.projects.viewProjectHint}
                   >
-                    <FiImage className="w-4 h-4" />
-                    Photos
+                    <FiArrowUpRight className="w-4 h-4" />
+                    {t.projects.viewProject}
                   </motion.button>
-                )}
                 {project.githubUrl && (
                   <motion.a
                     whileHover={{ scale: 1.02, x: 2 }}
@@ -180,7 +159,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                     rel="noopener noreferrer"
                   >
                     <FiGithub className="w-4 h-4" />
-                    Voir sur GitHub
+                    {t.projects.viewOnGithub}
                   </motion.a>
                 )}
               </div>
@@ -189,18 +168,12 @@ export function Projects({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      {/* Gallery Modal */}
-      {selectedProject && (
-        <ProjectGallery
-          images={selectedProject.images}
-          title={selectedProject.title}
-          isOpen={galleryOpen}
-          onClose={() => {
-            setGalleryOpen(false);
-            setSelectedProject(null);
-          }}
-        />
-      )}
+      <ProjectDetail
+        projects={projects}
+        index={openIndex}
+        onChange={setOpenIndex}
+        onClose={() => setOpenIndex(null)}
+      />
     </div>
   );
 }

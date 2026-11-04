@@ -38,6 +38,10 @@ Tout le contenu (profil, projets, expériences, compétences, certifications, te
 
 Le champ **« Ordre d'affichage »** contrôle l'ordre (1 = en premier).
 
+**Anglais :** chaque projet, expérience et le profil ont une partie **« 🇬🇧 Version anglaise »** (onglet « Anglais » pour le profil). Elle s'affiche quand le visiteur choisit **EN** dans l'en-tête ; un champ laissé vide reprend le texte français. Les textes fixes de l'interface sont dans `src/i18n/dictionary.ts`.
+
+**Thème :** clair ou sombre selon le réglage du système du visiteur, ou forcé avec le bouton de l'en-tête. Le thème clair inverse la palette Tailwind (voir la fin de `src/app/globals.css`).
+
 ### Technique
 - Schémas du Studio : `src/sanity/schemaTypes/`
 - Chargement du contenu : `src/content/getContent.ts` (repli automatique sur `src/config/data.ts` si Sanity est indisponible)

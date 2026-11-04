@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
+import { useT } from "@/i18n/LocaleProvider";
 
 export default function CVPage() {
   const [isClient, setIsClient] = useState(false);
+  const t = useT();
 
   useEffect(() => {
     setIsClient(true);
@@ -21,7 +23,7 @@ export default function CVPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="sticky top-0 z-30 bg-black/90 backdrop-blur-sm border-b border-gray-800 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <motion.a
@@ -30,7 +32,7 @@ export default function CVPage() {
             animate={{ opacity: 1, x: 0 }}
             className="text-lg hover:text-blue-400 transition-colors"
           >
-            ← Retour
+            {t.cv.back}
           </motion.a>
           <motion.button
             onClick={handleDownload}
@@ -39,7 +41,7 @@ export default function CVPage() {
             className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors font-medium flex items-center gap-2"
           >
             <Download className="h-5 w-5" />
-            Télécharger le CV
+            {t.cv.download}
           </motion.button>
         </div>
       </div>

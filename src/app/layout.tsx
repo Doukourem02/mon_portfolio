@@ -10,8 +10,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-black text-white">{children}</body>
+    <html lang="fr" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">{children}</body>
     </html>
   );
 }

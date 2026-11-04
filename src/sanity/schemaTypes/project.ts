@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { ProjectsIcon } from "@sanity/icons/Projects";
+import { englishField, englishFieldset } from "./english";
 import { orderField, orderOrdering } from "./orderField";
 
 export const projectType = defineType({
@@ -7,9 +8,30 @@ export const projectType = defineType({
   title: "Projet",
   type: "document",
   icon: ProjectsIcon,
+  fieldsets: [englishFieldset],
   fields: [
     defineField({ name: "title", title: "Titre", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "description", title: "Description", type: "text", rows: 8 }),
+    defineField({
+      name: "kind",
+      title: "Type de projet",
+      description: "Affiché en petit au-dessus du titre. Ex. : Site e-commerce, Application mobile, Plateforme web.",
+      type: "string",
+    }),
+    defineField({
+      name: "status",
+      title: "Statut",
+      description: "Si vide : « En production » quand il y a un lien de démo, sinon « En développement ».",
+      type: "string",
+      options: {
+        list: [
+          { title: "En production", value: "production" },
+          { title: "En développement", value: "development" },
+          { title: "Terminé", value: "done" },
+        ],
+        layout: "radio",
+      },
+    }),
+    defineField({ name: "description", title: "Description", description: "Les retours à la ligne sont conservés : sépare les paragraphes par une ligne vide, fais des listes avec « • ».", type: "text", rows: 12 }),
     defineField({
       name: "mainImage",
       title: "Image principale",
@@ -33,6 +55,8 @@ export const projectType = defineType({
       type: "array",
       of: [defineArrayMember({ type: "reference", to: [{ type: "skill" }] })],
     }),
+    englishField("kind", "Type de projet"),
+    englishField("description", "Description", "text"),
     orderField,
   ],
   orderings: [orderOrdering],

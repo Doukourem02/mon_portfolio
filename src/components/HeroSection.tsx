@@ -1,4 +1,5 @@
 "use client";
+import { useT } from "@/i18n/LocaleProvider";
 
 import type { Profile } from "@/content/types";
 import { motion } from "framer-motion";
@@ -29,6 +30,7 @@ function getSocialIcon(title: string) {
 export function HeroSection({ profile }: { profile: Profile }) {
   const { avatar, name, title, description, location, email, socialLinks } =
     profile;
+  const t = useT();
 
   return (
     <>
@@ -106,7 +108,7 @@ export function HeroSection({ profile }: { profile: Profile }) {
                 href={`mailto:${email}`}
               >
                 <FiCalendar className="w-4 h-4 mr-2" />
-                <span>Ecrivez-moi</span>
+                <span>{t.hero.writeMe}</span>
               </a>
             </motion.div>
           </div>

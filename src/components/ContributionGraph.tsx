@@ -12,13 +12,13 @@ import {
   FiEye,
 } from "react-icons/fi";
 import type { Profile } from "@/content/types";
+import { dictionaries, type Dictionary } from "@/i18n/dictionary";
+import { useLocale, useT } from "@/i18n/LocaleProvider";
 
 // 🧠 Lazy-load GitHubCalendar for performance
 const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
   ssr: false,
-  loading: () => (
-    <div className="text-center text-gray-400 py-10">Chargement du graphique...</div>
-  ),
+  loading: () => <GraphLoading />,
 });
 
 // 🎯 Import server actions
@@ -31,22 +31,22 @@ import {
   setViewsServerAction,
 } from "@/app/api/viewsActions";
 
-const MONTHS_FR = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
-const WEEKDAYS_FR = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+function GraphLoading() {
+  return <div className="text-center text-gray-400 py-10">{dictionaries[useLocale().locale].github.loading}</div>;
+}
 
 type Year = "last" | number;
 type Tooltip = { text: string; x: number; y: number } | null;
 
-/** « 3 contributions le mardi 12 mai 2026 » */
-function tooltipText(date: string, count: number) {
-  const label = new Date(`${date}T12:00:00`).toLocaleDateString("fr-FR", {
+/** « 3 contributions le mardi 12 mai 2026 » / « 3 contributions on Tuesday, May 12, 2026 » */
+function tooltipText(g: Dictionary["github"], date: string, count: number) {
+  const label = new Date(`${date}T12:00:00`).toLocaleDateString(g.dateLocale, {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
   });
-  const what = count === 0 ? "Aucune contribution" : `${count} contribution${count > 1 ? "s" : ""}`;
-  return `${what} le ${label}`;
+  return g.on(g.contributions(count), label);
 }
 
 const githubTheme = {
@@ -65,6 +65,7 @@ export default function ContributionGraph({
 }) {
 
   const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>();
+  const g = useT().github;
   const [views, setViews] = useState(0);
   const [love, setLove] = useState(0);
   const [hasLoved, setHasLoved] = useState(false);
@@ -112,9 +113,7 @@ export default function ContributionGraph({
   const countTitle =
     currentCount == null
       ? null
-      : `${currentCount} contribution${currentCount > 1 ? "s" : ""} ${
-          year === "last" ? "au cours de la dernière année" : `en ${year}`
-        }`;
+      : g.total(currentCount, year);
 
   // ✅ Auto-scroll : fin du graphique pour l'année en cours, début sinon
   useEffect(() => {
@@ -205,10 +204,10 @@ export default function ContributionGraph({
   const totalFollowing = socialStats.twitter.following + socialStats.instagram.following;
 
   const socialInfo = [
-    { icon: <FiUsers />, label: "Abonnés", value: totalFollowers },
-    { icon: <FiUserCheck />, label: "Abonnements", value: totalFollowing },
-    { icon: <FiHeart />, label: "J'aime", value: love, isLove: true },
-    { icon: <FiEye />, label: "Vues", value: views },
+    { icon: <FiUsers />, label: g.followers, value: totalFollowers },
+    { icon: <FiUserCheck />, label: g.following, value: totalFollowing },
+    { icon: <FiHeart />, label: g.likes, value: love, isLove: true },
+    { icon: <FiEye />, label: g.views, value: views },
   ];
 
   return (
@@ -254,7 +253,7 @@ export default function ContributionGraph({
                       : "text-gray-400 hover:text-white hover:bg-gray-800/60"
                   }`}
                 >
-                  {y === "last" ? "12 mois" : y}
+                  {y === "last" ? g.lastYear : y}
                 </button>
               ))}
             </div>
@@ -285,16 +284,16 @@ export default function ContributionGraph({
             showWeekdayLabels
             hideTotalCount
             labels={{
-              months: MONTHS_FR,
-              weekdays: WEEKDAYS_FR,
-              legend: { less: "Moins", more: "Plus" },
+              months: g.months,
+              weekdays: g.weekdays,
+              legend: { less: g.less, more: g.more },
             }}
             renderBlock={(block, activity) =>
               cloneElement(block, {
                 onMouseEnter: (e: React.MouseEvent<SVGRectElement>) => {
                   const r = e.currentTarget.getBoundingClientRect();
                   setTooltip({
-                    text: tooltipText(activity.date, activity.count),
+                    text: tooltipText(g, activity.date, activity.count),
                     x: r.left + r.width / 2,
                     y: r.top,
                   });

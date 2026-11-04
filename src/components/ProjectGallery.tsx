@@ -1,4 +1,5 @@
 "use client";
+import { useT } from "@/i18n/LocaleProvider";
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -10,19 +11,23 @@ interface ProjectGalleryProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  startIndex?: number;
 }
 
-export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGalleryProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function ProjectGallery({ images, title, isOpen, onClose, startIndex = 0 }: ProjectGalleryProps) {
+  const [currentIndex, setCurrentIndex] = useState(startIndex);
+  const t = useT();
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (isOpen) setCurrentIndex(startIndex);
+  }, [isOpen, startIndex]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previous;
     };
   }, [isOpen]);
 
@@ -59,7 +64,7 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
           >
             {/* Modal */}
             <motion.div
@@ -75,7 +80,7 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
                 <button
                   onClick={onClose}
                   className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-                  aria-label="Fermer"
+                  aria-label={t.projects.close}
                 >
                   <FiX className="w-6 h-6 text-gray-400 hover:text-white" />
                 </button>
@@ -110,14 +115,14 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
                     <button
                       onClick={goToPrevious}
                       className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full transition-colors backdrop-blur-sm"
-                      aria-label="Image précédente"
+                      aria-label={t.projects.previousImage}
                     >
                       <FiChevronLeft className="w-6 h-6 text-white" />
                     </button>
                     <button
                       onClick={goToNext}
                       className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full transition-colors backdrop-blur-sm"
-                      aria-label="Image suivante"
+                      aria-label={t.projects.nextImage}
                     >
                       <FiChevronRight className="w-6 h-6 text-white" />
                     </button>
@@ -150,7 +155,7 @@ export function ProjectGallery({ images, title, isOpen, onClose }: ProjectGaller
                       >
                         <Image
                           src={img}
-                          alt={`Thumbnail ${index + 1}`}
+                          alt={`${title} – ${t.projects.image(index + 1)}`}
                           fill
                           sizes="(max-width: 768px) 100vw, 120px"
                           quality={90}

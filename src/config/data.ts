@@ -351,8 +351,9 @@ export const techStack = [
 export const projects = [
   {
     title: "Paradis Stores",
+    kind: "Site e-commerce",
     description:
-      "Boutique en ligne de parfums de niche et de grandes maisons, livrée à Abidjan et partout en Côte d'Ivoire, avec prix en F CFA. Vitrine éditoriale avec carrousel plein écran, catalogue filtrable par style olfactif, marque et odeurs, fiches produit avec choix de la contenance, panier, codes promo, avis clients et journal (blog). Back-office sur mesure entièrement en français construit avec Payload CMS : gestion des commandes et des livraisons, du catalogue, des photos et des articles, avec notifications push et alerte sonore à chaque nouvelle commande. Sécurité soignée : double authentification (TOTP), rôles utilisateurs, historique des modifications et limitation des requêtes. Tâche planifiée quotidienne qui annule les commandes impayées et anonymise les anciennes données. Next.js 16, PostgreSQL, images sur Vercel Blob, SEO (sitemap, métadonnées) et déploiement sur Vercel.",
+      "Boutique en ligne de parfums de niche et de grandes maisons, livrée à Abidjan et partout en Côte d'Ivoire, avec des prix en F CFA.\n\nCôté boutique :\n• Vitrine éditoriale avec carrousel plein écran, un parfum par diapositive\n• Catalogue filtrable par style olfactif, marque et odeurs\n• Fiches produit avec choix de la contenance, panier et codes promo\n• Avis clients et journal (articles de conseil)\n\nCôté gestion, un back-office sur mesure entièrement en français (Payload CMS) :\n• Suivi des commandes et des livraisons, avec notification push et alerte sonore à chaque nouvelle commande\n• Gestion du catalogue, des photos, des articles et des infos de la boutique\n• Double authentification (TOTP), rôles utilisateurs et historique des modifications\n• Tâche quotidienne qui annule les commandes impayées et anonymise les anciennes données\n\nNext.js 16, PostgreSQL, images sur Vercel Blob, SEO soigné (sitemap, métadonnées) et déploiement sur Vercel.",
     image: "/images/projects/projet-paradis-stores/Image1.png",
     liveUrl: "https://www.paradisstores.com",
     galleryImages: [
@@ -370,6 +371,7 @@ export const projects = [
   },
   {
     title: "KRONO Livraison",
+    kind: "Plateforme web & mobile",
     description:
       "Plateforme de livraison en temps réel connectant clients, chauffeurs et administrateurs. Monorepo complet avec 4 applications : API REST + Socket.IO (Node.js/Express), dashboard web admin (Next.js 16), application mobile client (Expo/React Native) et application mobile chauffeur. La solution permet un suivi en direct des commandes, une communication instantanée entre les parties, une géolocalisation précise avec Google Maps, une authentification OTP sécurisée, des notifications push en temps réel, ainsi qu’une gestion complète des livraisons, des statuts, des paiements et des opérations administratives. Le backend repose sur PostgreSQL/Supabase avec migrations SQL et sécurité JWT.",
     image: "/images/projects/chrono_livraison/chrono2.png",
@@ -399,6 +401,7 @@ export const projects = [
   },
   {
     title: "Projet Sainain",
+    kind: "Application mobile",
     description:
       "Marketplace agricole mobile mettant en relation producteurs et acheteurs, avec un assistant IA agricole intégré (conseiller virtuel propulsé par GPT-4o-mini, avec historique de conversations) pour aider les producteurs sur la production, la certification et la mise en marché. Chat temps réel via Socket.IO depuis les fiches produits ou les demandes d'achat, workflow de commandes (demande → confirmation producteur), publication d'annonces d'achat avec notification automatique des producteurs concernés, et météo locale intégrée. Application mobile React Native/Expo, backend Node.js/Express et PostgreSQL (Supabase), authentification via Clerk. Architecture soignée avec Prisma ORM, validation Joi, logging Winston, documentation Swagger et pipeline CI/CD.",
     image: "/images/projects/projet_sainain/sainain4.jpg",
@@ -425,6 +428,7 @@ export const projects = [
   },
   {
     title: "Bella Création",
+    kind: "Site vitrine & back-office",
     description:
       "Plateforme web dynamique avec panel administrateur complet pour Bellarose création imagination. L'application permet à l'entreprise de gérer elle-même ses prestations, visuels, conseils, témoignages, contenus et informations de contact sans dépendre d'un développeur. Le projet associe une interface publique élégante dédiée à la décoration d'intérieur et à l'apprentissage avec un back-office métier pensé pour donner au client un contrôle total sur son activité digitale.",
     image: "/images/projects/bella-creation/bella-creation-1.png",
@@ -438,6 +442,7 @@ export const projects = [
   },
   {
     title: "REPSFECO-CI",
+    kind: "Site institutionnel",
     description:
       "Plateforme institutionnelle dynamique pour le Réseau Paix et Sécurité pour les Femmes de l'Espace CEDEAO - Section Côte d'Ivoire. Le site centralise la présentation de l'organisation, ses missions, ses domaines d'intervention et ses actions terrain autour de la paix, de la gouvernance et de l'autonomisation des femmes. Un espace d'administration permet de publier et gérer les activités, transformant le site en véritable outil de communication autonome pour l'organisation.",
     image: "/images/projects/repsfeco-ci/repsfeco-ci-1.png",
@@ -451,6 +456,7 @@ export const projects = [
   },
   {
     title: "Nike Reimagined",
+    kind: "Concept web",
     description:
       "Refonte moderne et élégante du site Nike : design entièrement responsive, animations fluides et interface épurée inspirée de l'identité Nike. Développé avec une approche mobile-first et déployé sur Vercel pour des performances optimales.",
     image: "/images/projects/nike-reimagined.webp",

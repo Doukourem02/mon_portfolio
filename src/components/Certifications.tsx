@@ -1,4 +1,5 @@
 "use client"
+import { useT } from "@/i18n/LocaleProvider";
 
 import type { Certification } from "@/content/types"
 import { motion } from "framer-motion"
@@ -6,6 +7,7 @@ import Image from "next/image"
 import { FaCertificate } from "react-icons/fa"
 
 export function Certifications({ certifications }: { certifications: Certification[] }) {
+  const t = useT()
   return (
     <div className="mb-16">
       <motion.div
@@ -26,7 +28,7 @@ export function Certifications({ certifications }: { certifications: Certificati
             <FaCertificate className="w-6 h-6 text-blue-400" />
           </motion.div>
           <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
-            Réalisations & Certifications
+            {t.sections.certifications}
           </h2>
         </div>
         <motion.div

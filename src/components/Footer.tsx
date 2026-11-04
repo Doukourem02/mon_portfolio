@@ -1,4 +1,5 @@
 "use client";
+import { useT } from "@/i18n/LocaleProvider";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ import { ADMIN_FLAG_KEY } from "@/sanity/adminKey";
 export function Footer({ name }: { name: string }) {
   const router = useRouter();
   const [isEditor, setIsEditor] = useState(false);
+  const t = useT();
 
   useEffect(() => {
     try {
@@ -42,8 +44,8 @@ export function Footer({ name }: { name: string }) {
       {isEditor && (
         <Link
           href="/studio"
-          aria-label="Gérer le contenu"
-          title="Gérer le contenu"
+          aria-label={t.footer.manage}
+          title={t.footer.manage}
           className="opacity-40 hover:opacity-100 transition-opacity"
         >
           <FiSettings className="w-4 h-4" />

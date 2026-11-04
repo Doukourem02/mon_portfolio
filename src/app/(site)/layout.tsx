@@ -1,4 +1,5 @@
 import { Footer, Header } from "@/components";
+import { Providers } from "@/components/Providers";
 import { getContent } from "@/content/getContent";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
@@ -13,7 +14,7 @@ export default async function SiteLayout({
   const { profile } = await getContent();
 
   return (
-    <>
+    <Providers>
       {/* 🔝 Site Header */}
       <Header name={profile.name} />
 
@@ -27,6 +28,6 @@ export default async function SiteLayout({
       {gaId && <GoogleAnalytics gaId={gaId} />}
       <Analytics />
       <SpeedInsights />
-    </>
+    </Providers>
   );
 }

@@ -19,6 +19,10 @@ export interface Project {
   galleryImages: string[];
   liveUrl?: string;
   githubUrl?: string;
+  /** Type de projet affiché au-dessus du titre (ex. « Site e-commerce »). */
+  kind?: string;
+  /** production | development | done — déduit de liveUrl si absent. */
+  status?: string;
   techStack: Skill[];
 }
 
