@@ -407,6 +407,7 @@ export const projects = [
       "Plateforme web dynamique avec panel administrateur complet pour Bellarose création imagination. L'application permet à l'entreprise de gérer elle-même ses prestations, visuels, conseils, témoignages, contenus et informations de contact sans dépendre d'un développeur. Le projet associe une interface publique élégante dédiée à la décoration d'intérieur et à l'apprentissage avec un back-office métier pensé pour donner au client un contrôle total sur son activité digitale.",
     image: "/images/projects/bella-creation/bella-creation-1.png",
     liveUrl: "https://bella-interio-design.vercel.app",
+    githubUrl: "https://github.com/Doukourem02/bella_interio_design",
     galleryImages: [
       "/images/projects/bella-creation/bella-creation-1.png",
       "/images/projects/bella-creation/bella-creation-2.png",
@@ -421,6 +422,7 @@ export const projects = [
       "Plateforme institutionnelle dynamique pour le Réseau Paix et Sécurité pour les Femmes de l'Espace CEDEAO - Section Côte d'Ivoire. Le site centralise la présentation de l'organisation, ses missions, ses domaines d'intervention et ses actions terrain autour de la paix, de la gouvernance et de l'autonomisation des femmes. Un espace d'administration permet de publier et gérer les activités, transformant le site en véritable outil de communication autonome pour l'organisation.",
     image: "/images/projects/repsfeco-ci/repsfeco-ci-1.png",
     liveUrl: "https://repsfeco-ci.vercel.app",
+    githubUrl: "https://github.com/Doukourem02/repsfeco_ci",
     galleryImages: [
       "/images/projects/repsfeco-ci/repsfeco-ci-1.png",
       "/images/projects/repsfeco-ci/repsfeco-ci-2.png",
