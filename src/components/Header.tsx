@@ -52,28 +52,16 @@ export function Header({ name }: { name: string }) {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <span className="hidden sm:inline text-gray-400 tabular-nums">{time}</span>
 
-          {/* Langue */}
-          <div
-            role="group"
-            aria-label={t.header.language}
-            className="flex items-center rounded-full border border-gray-700/80 bg-gray-900/40 p-0.5 text-xs"
+          {/* Langue : un cercle avec la langue actuelle, un clic bascule FR ↔ EN */}
+          <button
+            type="button"
+            onClick={() => setLocale(locale === "fr" ? "en" : "fr")}
+            title={t.header.switchTo}
+            aria-label={t.header.switchTo}
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-700/80 bg-gray-900/40 text-[11px] font-semibold text-gray-300 transition-colors hover:text-white"
           >
-            {(["fr", "en"] as const).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLocale(l)}
-                aria-pressed={locale === l}
-                lang={l}
-                title={l === "fr" ? "Français" : "English"}
-                className={`rounded-full px-2.5 py-1 font-medium transition-colors ${
-                  locale === l ? "bg-white text-black" : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
+            {locale.toUpperCase()}
+          </button>
 
           {/* Thème : automatique → clair → sombre */}
           <button
