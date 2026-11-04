@@ -20,6 +20,7 @@ import {
   FaReact,
   FaRobot,
   FaServer,
+  FaTheaterMasks,
 } from "react-icons/fa";
 import {
   SiAdobeillustrator,
@@ -96,6 +97,14 @@ import {
   SiVuedotjs,
   SiWordpress,
   SiZod,
+  SiFastify,
+  SiGrafana,
+  SiPandas,
+  SiPayloadcms,
+  SiPrometheus,
+  SiPytest,
+  SiScikitlearn,
+  SiVitest,
 } from "react-icons/si";
 
 /**
@@ -144,6 +153,9 @@ export const skillIcons: Record<string, { label: string; icon: IconType }> = {
   FaPython: { label: "Python", icon: FaPython },
   SiDjango: { label: "Django", icon: SiDjango },
   SiFastapi: { label: "FastAPI", icon: SiFastapi },
+  SiFastify: { label: "Fastify", icon: SiFastify },
+  SiPandas: { label: "Pandas", icon: SiPandas },
+  SiScikitlearn: { label: "scikit-learn", icon: SiScikitlearn },
   SiFlask: { label: "Flask", icon: SiFlask },
   SiPhp: { label: "PHP", icon: SiPhp },
   SiLaravel: { label: "Laravel", icon: SiLaravel },
@@ -166,6 +178,7 @@ export const skillIcons: Record<string, { label: string; icon: IconType }> = {
   FaDatabase: { label: "Base de données (générique)", icon: FaDatabase },
   SiSanity: { label: "Sanity", icon: SiSanity },
   SiStrapi: { label: "Strapi", icon: SiStrapi },
+  SiPayloadcms: { label: "Payload CMS", icon: SiPayloadcms },
   SiWordpress: { label: "WordPress", icon: SiWordpress },
   SiShopify: { label: "Shopify", icon: SiShopify },
   SiNotion: { label: "Notion", icon: SiNotion },
@@ -192,6 +205,11 @@ export const skillIcons: Record<string, { label: string; icon: IconType }> = {
   SiGitlab: { label: "GitLab", icon: SiGitlab },
   SiGithubactions: { label: "GitHub Actions", icon: SiGithubactions },
   SiJest: { label: "Jest", icon: SiJest },
+  SiVitest: { label: "Vitest", icon: SiVitest },
+  SiPytest: { label: "Pytest", icon: SiPytest },
+  FaTheaterMasks: { label: "Playwright", icon: FaTheaterMasks },
+  SiPrometheus: { label: "Prometheus", icon: SiPrometheus },
+  SiGrafana: { label: "Grafana", icon: SiGrafana },
   SiPostman: { label: "Postman", icon: SiPostman },
   FaFigma: { label: "Figma", icon: FaFigma },
   SiAdobephotoshop: { label: "Photoshop", icon: SiAdobephotoshop },

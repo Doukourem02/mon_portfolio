@@ -263,6 +263,15 @@ export const techStack = [
     color: "text-pink-500",
     type: "Backend & Databases",
   },
+  { name: "Fastify", icon: "SiFastify", color: "text-white", type: "Backend & Databases" },
+  { name: "FastAPI", icon: "SiFastapi", color: "text-teal-400", type: "Backend & Databases" },
+  { name: "Drizzle ORM", icon: "SiDrizzle", color: "text-green-400", type: "Backend & Databases" },
+  { name: "Redis", icon: "SiRedis", color: "text-red-500", type: "Backend & Databases" },
+  { name: "Zod", icon: "SiZod", color: "text-blue-600", type: "Backend & Databases" },
+  { name: "Clerk", icon: "SiClerk", color: "text-purple-500", type: "Backend & Databases" },
+  { name: "Swagger", icon: "SiSwagger", color: "text-green-500", type: "Backend & Databases" },
+  { name: "Pandas", icon: "SiPandas", color: "text-indigo-400", type: "Backend & Databases" },
+  { name: "scikit-learn", icon: "SiScikitlearn", color: "text-orange-400", type: "Backend & Databases" },
 
   // === CMS ===
   {
@@ -277,6 +286,7 @@ export const techStack = [
     color: "text-purple-500",
     type: "CMS",
   },
+  { name: "Payload CMS", icon: "SiPayloadcms", color: "text-white", type: "CMS" },
 
   // === TOOLS & DEVOPS ===
   {
@@ -315,6 +325,13 @@ export const techStack = [
     color: "text-orange-400",
     type: "Tools & DevOps",
   },
+  { name: "GitHub Actions", icon: "SiGithubactions", color: "text-blue-500", type: "Tools & DevOps" },
+  { name: "Vitest", icon: "SiVitest", color: "text-yellow-400", type: "Tools & DevOps" },
+  { name: "Jest", icon: "SiJest", color: "text-red-500", type: "Tools & DevOps" },
+  { name: "Pytest", icon: "SiPytest", color: "text-blue-400", type: "Tools & DevOps" },
+  { name: "Playwright", icon: "FaTheaterMasks", color: "text-green-500", type: "Tools & DevOps" },
+  { name: "Prometheus", icon: "SiPrometheus", color: "text-orange-600", type: "Tools & DevOps" },
+  { name: "Grafana", icon: "SiGrafana", color: "text-orange-500", type: "Tools & DevOps" },
 
   // === DESIGN ===
   {
@@ -332,6 +349,25 @@ export const techStack = [
 ];
 
 export const projects = [
+  {
+    title: "Paradis Stores",
+    description:
+      "Boutique en ligne de parfums de niche et de grandes maisons, livrée à Abidjan et partout en Côte d'Ivoire, avec prix en F CFA. Vitrine éditoriale avec carrousel plein écran, catalogue filtrable par style olfactif, marque et odeurs, fiches produit avec choix de la contenance, panier, codes promo, avis clients et journal (blog). Back-office sur mesure entièrement en français construit avec Payload CMS : gestion des commandes et des livraisons, du catalogue, des photos et des articles, avec notifications push et alerte sonore à chaque nouvelle commande. Sécurité soignée : double authentification (TOTP), rôles utilisateurs, historique des modifications et limitation des requêtes. Tâche planifiée quotidienne qui annule les commandes impayées et anonymise les anciennes données. Next.js 16, PostgreSQL, images sur Vercel Blob, SEO (sitemap, métadonnées) et déploiement sur Vercel.",
+    image: "/images/projects/projet-paradis-stores/Image1.png",
+    liveUrl: "https://www.paradisstores.com",
+    galleryImages: [
+      "/images/projects/projet-paradis-stores/Image1.png",
+      "/images/projects/projet-paradis-stores/Image2.png",
+      "/images/projects/projet-paradis-stores/Image3.png",
+      "/images/projects/projet-paradis-stores/Image4.png",
+      "/images/projects/projet-paradis-stores/Image5.png",
+      "/images/projects/projet-paradis-stores/Image6.png",
+      "/images/projects/projet-paradis-stores/Image7.png",
+      "/images/projects/projet-paradis-stores/Image8.png",
+      "/images/projects/projet-paradis-stores/Image9.png",
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Vercel"],
+  },
   {
     title: "KRONO Livraison",
     description:
