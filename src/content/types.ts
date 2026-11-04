@@ -12,11 +12,19 @@ export interface Skill {
   category: string;
 }
 
+export interface ProjectVideo {
+  url: string;
+  poster?: string;
+  title?: string;
+}
+
 export interface Project {
   title: string;
   description: string;
   image: string;
   galleryImages: string[];
+  /** Vidéos de démonstration (affichées avant les captures). */
+  videos?: ProjectVideo[];
   liveUrl?: string;
   githubUrl?: string;
   /** Type de projet affiché au-dessus du titre (ex. « Site e-commerce »). */

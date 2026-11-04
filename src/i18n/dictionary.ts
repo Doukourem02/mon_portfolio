@@ -34,6 +34,8 @@ const fr = {
     nextProject: "Projet suivant",
     projectCounter: (n: string, total: string) => `Projet ${n} / ${total}`,
     techStack: "Technologies utilisées",
+    video: "Vidéo",
+    playVideo: "Lire la vidéo",
   },
   skillCategories: {
     Frontend: "Frontend",
@@ -100,6 +102,8 @@ const en: Dictionary = {
     nextProject: "Next project",
     projectCounter: (n, total) => `Project ${n} / ${total}`,
     techStack: "Tech stack",
+    video: "Video",
+    playVideo: "Play video",
   },
   skillCategories: {
     Frontend: "Frontend",

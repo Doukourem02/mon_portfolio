@@ -16,7 +16,8 @@ export const siteContentQuery = defineQuery(`{
   },
   "skills": *[_type == "skill"] | order(order asc, _createdAt asc){ ${skillFields} },
   "projects": *[_type == "project"] | order(order asc, _createdAt asc){
-    title, description, descriptionEn, mainImage, "gallery": coalesce(gallery, []), liveUrl, githubUrl, kind, kindEn, status,
+    title, description, descriptionEn, mainImage, "gallery": coalesce(gallery, []),
+    "videos": coalesce(videos[defined(file.asset)]{ "url": file.asset->url, poster, title }, []), liveUrl, githubUrl, kind, kindEn, status,
     "techStack": coalesce(technologies[]->{ ${skillFields} }, [])
   },
   "certifications": *[_type == "certification"] | order(order asc, _createdAt asc){

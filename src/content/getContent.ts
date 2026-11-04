@@ -78,6 +78,11 @@ function buildContent(data: any, locale: Locale): SiteContent {
         description: tr(project, "description", locale) ?? "",
         image,
         galleryImages: gallery.length ? gallery : image ? [image] : [],
+        videos: (project.videos ?? []).map((v: any) => ({
+          url: v.url,
+          poster: imageUrl(v.poster) || undefined,
+          title: v.title || undefined,
+        })),
         liveUrl: project.liveUrl || undefined,
         githubUrl: project.githubUrl || undefined,
         kind: tr(project, "kind", locale) || undefined,

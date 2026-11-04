@@ -47,6 +47,39 @@ export const projectType = defineType({
       of: [defineArrayMember({ type: "image" })],
       options: { layout: "grid" },
     }),
+    defineField({
+      name: "videos",
+      title: "Vidéos",
+      description: "Affichées avant les captures dans la fiche du projet. Format conseillé : MP4, quelques Mo maximum.",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "projectVideo",
+          title: "Vidéo",
+          fields: [
+            defineField({
+              name: "file",
+              title: "Fichier vidéo",
+              type: "file",
+              options: { accept: "video/mp4,video/webm,video/quicktime" },
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "poster",
+              title: "Image de couverture",
+              description: "Affichée avant la lecture. Si vide, la première image de la vidéo est utilisée.",
+              type: "image",
+            }),
+            defineField({ name: "title", title: "Titre (optionnel)", type: "string" }),
+          ],
+          preview: {
+            select: { title: "title", filename: "file.asset.originalFilename", media: "poster" },
+            prepare: ({ title, filename, media }) => ({ title: title || filename || "Vidéo", media }),
+          },
+        }),
+      ],
+    }),
     defineField({ name: "liveUrl", title: "Lien de la démo", description: "Laisser vide si pas encore déployé.", type: "url" }),
     defineField({ name: "githubUrl", title: "Lien GitHub", type: "url" }),
     defineField({

@@ -15,6 +15,7 @@ import {
   FiChevronRight,
   FiGithub,
   FiMaximize2,
+  FiPlay,
   FiX,
 } from "react-icons/fi";
 import { ProjectGallery } from "./ProjectGallery";
@@ -34,6 +35,8 @@ function statusOf(project: Project): Status {
 }
 
 const pad = (n: number) => String(n).padStart(2, "0");
+
+type Media = { kind: "video"; src: string; poster?: string; title?: string } | { kind: "image"; src: string };
 
 /** Jusqu'à ce nombre de technologies, une simple liste suffit (pas de catégories). */
 const FLAT_TECH_LIMIT = 8;
@@ -62,6 +65,12 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
   const isOpen = index !== null;
   const project = index !== null ? projects[index] : null;
   const images = project ? (project.galleryImages.length ? project.galleryImages : project.image ? [project.image] : []) : [];
+  const videos = project?.videos ?? [];
+  // Galerie : les vidéos d'abord, puis les captures.
+  const media: Media[] = [
+    ...videos.map((v) => ({ kind: "video" as const, src: v.url, poster: v.poster, title: v.title })),
+    ...images.map((src) => ({ kind: "image" as const, src })),
+  ];
 
   const [imageIndex, setImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -79,11 +88,10 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
     };
   }, [isOpen]);
 
-  const nextImage = useCallback(() => setImageIndex((i) => (images.length ? (i + 1) % images.length : 0)), [images.length]);
-  const prevImage = useCallback(
-    () => setImageIndex((i) => (images.length ? (i - 1 + images.length) % images.length : 0)),
-    [images.length]
-  );
+  const count = media.length;
+  const nextImage = useCallback(() => setImageIndex((i) => (count ? (i + 1) % count : 0)), [count]);
+  const prevImage = useCallback(() => setImageIndex((i) => (count ? (i - 1 + count) % count : 0)), [count]);
+  const current = media[imageIndex];
   const goToProject = useCallback(
     (delta: number) => index !== null && onChange((index + delta + projects.length) % projects.length),
     [index, onChange, projects.length]
@@ -93,6 +101,8 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
     if (!isOpen || lightboxOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      // Dans le lecteur vidéo, les flèches servent à avancer / reculer dans la vidéo.
+      if (e.target instanceof HTMLVideoElement) return;
       if (e.key === "ArrowRight") nextImage();
       if (e.key === "ArrowLeft") prevImage();
     };
@@ -135,7 +145,7 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
                   {/* Colonne gauche : le visuel + les miniatures */}
                   <div className="flex min-w-0 flex-col gap-3 lg:min-h-0 lg:justify-center">
                     <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-blue-500/20 bg-gray-900 shadow-2xl shadow-blue-950/40">
-                      {images.length > 0 && (
+                      {current && (
                         <AnimatePresence mode="wait">
                           <motion.div
                             key={imageIndex}
@@ -145,20 +155,32 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
                             transition={{ duration: 0.25 }}
                             className="absolute inset-0"
                           >
-                            <Image
-                              src={images[imageIndex]}
-                              alt={`${project.title} – ${t.projects.image(imageIndex + 1)}`}
-                              fill
-                              sizes="(max-width: 1024px) 100vw, 55vw"
-                              quality={90}
-                              priority
-                              className="object-contain"
-                            />
+                            {current.kind === "video" ? (
+                              <video
+                                src={current.src}
+                                poster={current.poster}
+                                controls
+                                playsInline
+                                preload="metadata"
+                                aria-label={current.title || `${project.title} – ${t.projects.video}`}
+                                className="h-full w-full bg-black object-contain"
+                              />
+                            ) : (
+                              <Image
+                                src={current.src}
+                                alt={`${project.title} – ${t.projects.image(imageIndex + 1)}`}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 55vw"
+                                quality={90}
+                                priority
+                                className="object-contain"
+                              />
+                            )}
                           </motion.div>
                         </AnimatePresence>
                       )}
 
-                      {images.length > 0 && (
+                      {current?.kind === "image" && (
                         <button
                           onClick={() => setLightboxOpen(true)}
                           className="absolute right-3 top-3 rounded-full bg-black/60 p-2.5 text-white opacity-80 backdrop-blur-sm transition hover:bg-black/80 hover:opacity-100"
@@ -169,7 +191,7 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
                         </button>
                       )}
 
-                      {images.length > 1 && (
+                      {count > 1 && (
                         <>
                           <button
                             onClick={prevImage}
@@ -185,25 +207,41 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
                           >
                             <FiChevronRight className="h-5 w-5" />
                           </button>
-                          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white backdrop-blur-sm">
-                            {imageIndex + 1} / {images.length}
+                          {/* En haut pour une vidéo, pour ne pas cacher ses commandes. */}
+                          <span
+                            className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white backdrop-blur-sm ${
+                              current?.kind === "video" ? "top-3" : "bottom-3"
+                            }`}
+                          >
+                            {imageIndex + 1} / {count}
                           </span>
                         </>
                       )}
                     </div>
 
-                    {images.length > 1 && (
+                    {count > 1 && (
                       <div className="-mx-1 flex shrink-0 gap-2 overflow-x-auto px-1 py-1">
-                        {images.map((img, i) => (
+                        {media.map((m, i) => (
                           <button
-                            key={img + i}
+                            key={m.src + i}
                             onClick={() => setImageIndex(i)}
-                            className={`relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-lg border-2 transition sm:w-24 ${
+                            className={`relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-lg border-2 bg-gray-900 transition sm:w-24 ${
                               i === imageIndex ? "border-blue-400" : "border-transparent opacity-60 hover:opacity-100"
                             }`}
-                            aria-label={t.projects.showImage(i + 1)}
+                            aria-label={m.kind === "video" ? t.projects.playVideo : t.projects.showImage(i + 1)}
                           >
-                            <Image src={img} alt="" fill sizes="96px" className="object-cover" />
+                            {m.kind === "video" ? (
+                              <>
+                                {m.poster && <Image src={m.poster} alt="" fill sizes="96px" className="object-cover" />}
+                                <span className="absolute inset-0 flex items-center justify-center bg-black/35">
+                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-gray-950 shadow">
+                                    <FiPlay className="ml-0.5 h-4 w-4" />
+                                  </span>
+                                </span>
+                              </>
+                            ) : (
+                              <Image src={m.src} alt="" fill sizes="96px" className="object-cover" />
+                            )}
                           </button>
                         ))}
                       </div>
@@ -340,7 +378,7 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
           images={images}
           title={project.title}
           isOpen={lightboxOpen}
-          startIndex={imageIndex}
+          startIndex={Math.max(0, imageIndex - videos.length)}
           onClose={() => setLightboxOpen(false)}
         />
       )}

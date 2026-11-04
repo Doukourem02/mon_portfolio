@@ -4,7 +4,7 @@ import { useT } from "@/i18n/LocaleProvider";
 import type { Project } from "@/content/types";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiArrowUpRight, FiCode, FiExternalLink, FiGithub } from "react-icons/fi";
+import { FiArrowUpRight, FiCode, FiExternalLink, FiGithub, FiPlay } from "react-icons/fi";
 import { ProjectDetail } from "./ProjectDetail";
 import { TechBadge } from "./TechBadge";
 
@@ -85,6 +85,12 @@ export function Projects({ projects }: { projects: Project[] }) {
                     sizes="(max-width: 768px) 100vw, 450px"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
+                )}
+                {!!project.videos?.length && (
+                  <span className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+                    <FiPlay className="h-3 w-3" />
+                    {t.projects.video}
+                  </span>
                 )}
                 {project.kind && (
                   <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
