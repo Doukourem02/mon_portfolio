@@ -33,6 +33,14 @@ const fr = {
     previousProject: "Projet précédent",
     nextProject: "Projet suivant",
     projectCounter: (n: string, total: string) => `Projet ${n} / ${total}`,
+    techStack: "Technologies utilisées",
+  },
+  skillCategories: {
+    Frontend: "Frontend",
+    "Backend & Databases": "Backend & données",
+    CMS: "CMS",
+    "Tools & DevOps": "Outils & DevOps",
+    Design: "Design",
   },
   github: {
     loading: "Chargement du graphique…",
@@ -91,6 +99,14 @@ const en: Dictionary = {
     previousProject: "Previous project",
     nextProject: "Next project",
     projectCounter: (n, total) => `Project ${n} / ${total}`,
+    techStack: "Tech stack",
+  },
+  skillCategories: {
+    Frontend: "Frontend",
+    "Backend & Databases": "Backend & data",
+    CMS: "CMS",
+    "Tools & DevOps": "Tools & DevOps",
+    Design: "Design",
   },
   github: {
     loading: "Loading chart…",

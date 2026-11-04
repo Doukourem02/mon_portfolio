@@ -270,6 +270,7 @@ export const techStack = [
   { name: "Zod", icon: "SiZod", color: "text-blue-600", type: "Backend & Databases" },
   { name: "Clerk", icon: "SiClerk", color: "text-purple-500", type: "Backend & Databases" },
   { name: "Swagger", icon: "SiSwagger", color: "text-green-500", type: "Backend & Databases" },
+  { name: "Mapbox", icon: "SiMapbox", color: "text-blue-400", type: "Backend & Databases" },
   { name: "Pandas", icon: "SiPandas", color: "text-indigo-400", type: "Backend & Databases" },
   { name: "scikit-learn", icon: "SiScikitlearn", color: "text-orange-400", type: "Backend & Databases" },
 
@@ -332,6 +333,7 @@ export const techStack = [
   { name: "Playwright", icon: "FaTheaterMasks", color: "text-green-500", type: "Tools & DevOps" },
   { name: "Prometheus", icon: "SiPrometheus", color: "text-orange-600", type: "Tools & DevOps" },
   { name: "Grafana", icon: "SiGrafana", color: "text-orange-500", type: "Tools & DevOps" },
+  { name: "Sentry", icon: "SiSentry", color: "text-purple-400", type: "Tools & DevOps" },
 
   // === DESIGN ===
   {
@@ -367,7 +369,7 @@ export const projects = [
       "/images/projects/projet-paradis-stores/Image8.png",
       "/images/projects/projet-paradis-stores/Image9.png",
     ],
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Vercel"],
   },
   {
     title: "KRONO Livraison",
@@ -384,20 +386,7 @@ export const projects = [
       "/images/projects/chrono_livraison/IMG_9320.jpg",
       "/images/projects/chrono_livraison/IMG_9321.jpg",
     ],
-    technologies: [
-        "React",
-        "React Native",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "Socket.IO",
-        "PostgreSQL",
-        "Supabase",
-        "Next.js",
-        "Expo",
-        "Zustand",
-        "React Query",
-      ],
+    technologies: ["Next.js", "React", "React Native", "Expo", "TypeScript", "Tailwind", "React Query", "Zustand", "Framer", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Redis", "Zod", "Mapbox", "Swagger", "Jest", "Vitest", "Sentry", "GitHub Actions"],
   },
   {
     title: "Projet Sainain",
@@ -411,20 +400,7 @@ export const projects = [
       "/images/projects/projet_sainain/sainain4.jpg",
       "/images/projects/projet_sainain/sainain5.png",
     ],
-    technologies: [
-        "React",
-        "React Native",
-        "TypeScript",
-        "JavaScript",
-        "Node.js",
-        "Express",
-        "Socket.IO",
-        "PostgreSQL",
-        "Prisma",
-        "Expo",
-        "Zustand",
-        "Supabase",
-      ],
+    technologies: ["React Native", "Expo", "TypeScript", "JavaScript", "Zustand", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Prisma", "Clerk", "Swagger", "Jest", "GitHub Actions"],
   },
   {
     title: "Bella Création",
@@ -438,7 +414,7 @@ export const projects = [
       "/images/projects/bella-creation/bella-creation-2.png",
       "/images/projects/bella-creation/bella-creation-3.png",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Docker", "Vitest", "Playwright", "Vercel"],
   },
   {
     title: "REPSFECO-CI",
@@ -452,7 +428,7 @@ export const projects = [
       "/images/projects/repsfeco-ci/repsfeco-ci-2.png",
       "/images/projects/repsfeco-ci/repsfeco-ci-3.png",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Framer", "Vercel"],
   },
   {
     title: "Nike Reimagined",
@@ -463,7 +439,7 @@ export const projects = [
     liveUrl: "https://nike-reimagined-mu.vercel.app/",
     githubUrl: "https://github.com/Doukourem02",
     galleryImages: ["/images/projects/nike-reimagined.webp"],
-    technologies: ["React", "Tailwind"],
+    technologies: ["React", "Tailwind", "Vercel"],
   },
 ];
 

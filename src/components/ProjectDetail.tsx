@@ -2,7 +2,8 @@
 import { useT } from "@/i18n/LocaleProvider";
 
 import type { Project } from "@/content/types";
-import { getSkillIcon } from "@/lib/icons";
+import type { Skill } from "@/content/types";
+import { TechBadge } from "./TechBadge";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -33,6 +34,19 @@ function statusOf(project: Project): Status {
 }
 
 const pad = (n: number) => String(n).padStart(2, "0");
+
+const CATEGORY_ORDER = ["Frontend", "Backend & Databases", "CMS", "Tools & DevOps", "Design"];
+
+/** Regroupe les technologies par catégorie, dans l'ordre des compétences. */
+function groupByCategory(techs: Skill[]): [string, Skill[]][] {
+  const groups = new Map<string, Skill[]>();
+  for (const tech of techs) {
+    const key = tech.category || "Tools & DevOps";
+    groups.set(key, [...(groups.get(key) ?? []), tech]);
+  }
+  const rank = (c: string) => (CATEGORY_ORDER.indexOf(c) + 1 || 99);
+  return [...groups.entries()].sort(([a], [b]) => rank(a) - rank(b));
+}
 
 interface ProjectDetailProps {
   projects: Project[];
@@ -219,19 +233,20 @@ export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDet
                     <p className="mb-8 whitespace-pre-line leading-relaxed text-gray-300">{project.description}</p>
 
                     {project.techStack.length > 0 && (
-                      <div className="mb-8 flex flex-wrap gap-2">
-                        {project.techStack.map((tech) => {
-                          const Icon = getSkillIcon(tech.icon);
-                          return (
-                            <span
-                              key={tech.name}
-                              className="flex items-center gap-2 rounded-md border border-gray-700/80 bg-gray-900/60 px-3 py-1.5 text-sm text-gray-200"
-                            >
-                              <Icon className={`h-4 w-4 ${tech.color}`} />
-                              {tech.name}
+                      <div className="mb-8 space-y-4 rounded-2xl border border-gray-800/80 bg-gray-900/30 p-4 sm:p-5">
+                        <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">{t.projects.techStack}</p>
+                        {groupByCategory(project.techStack).map(([category, techs]) => (
+                          <div key={category} className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+                            <span className="w-28 shrink-0 pt-1.5 text-sm text-gray-400">
+                              {t.skillCategories[category as keyof typeof t.skillCategories] ?? category}
                             </span>
-                          );
-                        })}
+                            <div className="flex flex-wrap gap-2">
+                              {techs.map((tech) => (
+                                <TechBadge key={tech.name} tech={tech} />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     )}
 
