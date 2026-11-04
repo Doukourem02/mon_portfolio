@@ -378,7 +378,6 @@ export const projects = [
       "Plateforme de livraison en temps réel connectant clients, chauffeurs et administrateurs. Monorepo complet avec 4 applications : API REST + Socket.IO (Node.js/Express), dashboard web admin (Next.js 16), application mobile client (Expo/React Native) et application mobile chauffeur. La solution permet un suivi en direct des commandes, une communication instantanée entre les parties, une géolocalisation précise avec Google Maps, une authentification OTP sécurisée, des notifications push en temps réel, ainsi qu’une gestion complète des livraisons, des statuts, des paiements et des opérations administratives. Le backend repose sur PostgreSQL/Supabase avec migrations SQL et sécurité JWT.",
     image: "/images/projects/chrono_livraison/chrono2.png",
     liveUrl: "https://admin.kro-no-delivery.com/login",
-    githubUrl: "https://github.com/Doukourem02/app_chrono",
     galleryImages: [
       "/images/projects/chrono_livraison/chrono1.png",
       "/images/projects/chrono_livraison/chrono2.png",
@@ -395,7 +394,6 @@ export const projects = [
       "Marketplace agricole mobile mettant en relation producteurs et acheteurs, avec un assistant IA agricole intégré (conseiller virtuel propulsé par GPT-4o-mini, avec historique de conversations) pour aider les producteurs sur la production, la certification et la mise en marché. Chat temps réel via Socket.IO depuis les fiches produits ou les demandes d'achat, workflow de commandes (demande → confirmation producteur), publication d'annonces d'achat avec notification automatique des producteurs concernés, et météo locale intégrée. Application mobile React Native/Expo, backend Node.js/Express et PostgreSQL (Supabase), authentification via Clerk. Architecture soignée avec Prisma ORM, validation Joi, logging Winston, documentation Swagger et pipeline CI/CD.",
     image: "/images/projects/projet_sainain/sainain4.jpg",
     // liveUrl: "", // Pas de déploiement pour l'instant
-    githubUrl: "https://github.com/Doukourem02/PROJET_SAINAIN",
     galleryImages: [
       "/images/projects/projet_sainain/sainain4.jpg",
       "/images/projects/projet_sainain/sainain5.png",
