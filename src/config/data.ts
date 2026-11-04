@@ -271,8 +271,6 @@ export const techStack = [
   { name: "Clerk", icon: "SiClerk", color: "text-purple-500", type: "Backend & Databases" },
   { name: "Swagger", icon: "SiSwagger", color: "text-green-500", type: "Backend & Databases" },
   { name: "Mapbox", icon: "SiMapbox", color: "text-blue-400", type: "Backend & Databases" },
-  { name: "Pandas", icon: "SiPandas", color: "text-indigo-400", type: "Backend & Databases" },
-  { name: "scikit-learn", icon: "SiScikitlearn", color: "text-orange-400", type: "Backend & Databases" },
 
   // === CMS ===
   {
@@ -327,12 +325,6 @@ export const techStack = [
     type: "Tools & DevOps",
   },
   { name: "GitHub Actions", icon: "SiGithubactions", color: "text-blue-500", type: "Tools & DevOps" },
-  { name: "Vitest", icon: "SiVitest", color: "text-yellow-400", type: "Tools & DevOps" },
-  { name: "Jest", icon: "SiJest", color: "text-red-500", type: "Tools & DevOps" },
-  { name: "Pytest", icon: "SiPytest", color: "text-blue-400", type: "Tools & DevOps" },
-  { name: "Playwright", icon: "FaTheaterMasks", color: "text-green-500", type: "Tools & DevOps" },
-  { name: "Prometheus", icon: "SiPrometheus", color: "text-orange-600", type: "Tools & DevOps" },
-  { name: "Grafana", icon: "SiGrafana", color: "text-orange-500", type: "Tools & DevOps" },
   { name: "Sentry", icon: "SiSentry", color: "text-purple-400", type: "Tools & DevOps" },
 
   // === DESIGN ===
@@ -385,20 +377,17 @@ export const projects = [
       "/images/projects/chrono_livraison/IMG_9320.jpg",
       "/images/projects/chrono_livraison/IMG_9321.jpg",
     ],
-    technologies: ["Next.js", "React", "React Native", "Expo", "TypeScript", "Tailwind", "React Query", "Zustand", "Framer", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Redis", "Zod", "Mapbox", "Swagger", "Jest", "Vitest", "Sentry", "GitHub Actions"],
+    technologies: ["Next.js", "React", "React Native", "Expo", "TypeScript", "Tailwind", "React Query", "Zustand", "Framer", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Redis", "Zod", "Mapbox", "Swagger", "Sentry", "GitHub Actions"],
   },
   {
     title: "Projet Sainain",
     kind: "Application mobile",
     description:
       "Marketplace agricole mobile mettant en relation producteurs et acheteurs, avec un assistant IA agricole intégré (conseiller virtuel propulsé par GPT-4o-mini, avec historique de conversations) pour aider les producteurs sur la production, la certification et la mise en marché. Chat temps réel via Socket.IO depuis les fiches produits ou les demandes d'achat, workflow de commandes (demande → confirmation producteur), publication d'annonces d'achat avec notification automatique des producteurs concernés, et météo locale intégrée. Application mobile React Native/Expo, backend Node.js/Express et PostgreSQL (Supabase), authentification via Clerk. Architecture soignée avec Prisma ORM, validation Joi, logging Winston, documentation Swagger et pipeline CI/CD.",
-    image: "/images/projects/projet_sainain/sainain4.jpg",
+    image: "/images/projects/projet_sainain/sainain-demo-poster.jpg",
     // liveUrl: "", // Pas de déploiement pour l'instant
-    galleryImages: [
-      "/images/projects/projet_sainain/sainain4.jpg",
-      "/images/projects/projet_sainain/sainain5.png",
-    ],
-    technologies: ["React Native", "Expo", "TypeScript", "JavaScript", "Zustand", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Prisma", "Clerk", "Swagger", "Jest", "GitHub Actions"],
+    galleryImages: [],
+    technologies: ["React Native", "Expo", "TypeScript", "JavaScript", "Zustand", "Node.js", "Express", "Socket.IO", "PostgreSQL", "Supabase", "Prisma", "Clerk", "Swagger", "GitHub Actions"],
   },
   {
     title: "Bella Création",
@@ -413,7 +402,7 @@ export const projects = [
       "/images/projects/bella-creation/bella-creation-2.png",
       "/images/projects/bella-creation/bella-creation-3.png",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Docker", "Vitest", "Playwright", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Payload CMS", "PostgreSQL", "Docker", "Vercel"],
   },
   {
     title: "REPSFECO-CI",

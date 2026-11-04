@@ -64,7 +64,13 @@ interface ProjectDetailProps {
 export function ProjectDetail({ projects, index, onChange, onClose }: ProjectDetailProps) {
   const isOpen = index !== null;
   const project = index !== null ? projects[index] : null;
-  const images = project ? (project.galleryImages.length ? project.galleryImages : project.image ? [project.image] : []) : [];
+  const images = project
+    ? project.galleryImages.length
+      ? project.galleryImages
+      : project.image && !project.videos?.length
+        ? [project.image]
+        : []
+    : [];
   const videos = project?.videos ?? [];
   // Galerie : les vidéos d'abord, puis les captures.
   const media: Media[] = [

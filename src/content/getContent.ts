@@ -77,7 +77,8 @@ function buildContent(data: any, locale: Locale): SiteContent {
         title: project.title ?? "",
         description: tr(project, "description", locale) ?? "",
         image,
-        galleryImages: gallery.length ? gallery : image ? [image] : [],
+        // Sans captures, l'image principale sert de galerie… sauf s'il y a une vidéo (c'est alors sa couverture).
+        galleryImages: gallery.length ? gallery : image && !project.videos?.length ? [image] : [],
         videos: (project.videos ?? []).map((v: any) => ({
           url: v.url,
           poster: imageUrl(v.poster) || undefined,
